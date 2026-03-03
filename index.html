@@ -15,6 +15,17 @@
 
 body {
   font-family: 'Rajdhani', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: 
+    linear-gradient(180deg, 
+      rgba(30,15,5,0.6) 0%, 
+      rgba(10,8,4,0.5) 10%,
+      rgba(6,14,26,0.75) 25%, 
+      rgba(6,14,26,0.85) 55%,
+      rgba(4,8,18,0.92) 100%),
+    url('https://images.unsplash.com/photo-1744799163503-74036eff6027?w=1920&q=80');
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center top;
   background-color: #060e1a;
   min-height: 100vh;
   color: #ffffff;
@@ -23,42 +34,6 @@ body {
   text-rendering: optimizeLegibility;
   position: relative;
   overflow-x: hidden;
-}
-
-/* Layered background: marina photo + sunset overlay + dark tint */
-body::before {
-  content: '';
-  position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: url('https://images.unsplash.com/photo-1744799163503-74036eff6027?w=1920&q=80') center top / cover no-repeat;
-  opacity: 0.3;
-  filter: saturate(0.8) brightness(0.5);
-  z-index: -2;
-}
-
-body::after {
-  content: '';
-  position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: linear-gradient(180deg, 
-    rgba(40,18,8,0.7) 0%, 
-    rgba(15,10,5,0.6) 12%,
-    rgba(6,14,26,0.8) 30%, 
-    rgba(6,14,26,0.88) 60%,
-    rgba(4,8,18,0.95) 100%);
-  z-index: -1;
-}
-
-/* Ambient teal glow behind center gauge */
-.center-col::before {
-  content: '';
-  position: absolute;
-  top: 50%; left: 50%;
-  transform: translate(-50%,-50%);
-  width: 500px; height: 500px;
-  background: radial-gradient(ellipse, rgba(0,200,180,0.06) 0%, transparent 70%);
-  pointer-events: none;
-  z-index: 0;
 }
 
 /* NAVIGATION */
@@ -335,26 +310,25 @@ body::after {
 
 /* CENTER COLUMN - Score Gauge */
 .center-col {
-  background: linear-gradient(135deg, rgba(8,16,30,0.6), rgba(12,20,38,0.5));
+  background: linear-gradient(135deg, rgba(8,16,30,0.5), rgba(12,20,38,0.4));
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border-radius: 12px;
-  padding: 20px 16px;
+  border-radius: 10px;
+  padding: 12px 12px 8px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 1px solid rgba(0,200,180,0.1);
-  box-shadow: 0 0 20px rgba(0,200,180,0.06), 0 8px 40px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.03);
-  min-height: 300px;
+  border: 1px solid rgba(0,200,180,0.08);
+  box-shadow: 0 0 20px rgba(0,200,180,0.04), 0 8px 40px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.02);
   justify-content: center;
   position: relative;
 }
 
 .gauge-wrapper {
   position: relative;
-  width: 240px;
-  height: 240px;
-  margin-bottom: 20px;
+  width: 220px;
+  height: 220px;
+  margin-bottom: 8px;
 }
 
 .gauge-wrapper::before {
@@ -542,7 +516,7 @@ body::after {
 .right-col {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
   justify-content: center;
 }
 
@@ -603,7 +577,7 @@ body::after {
 }
 
 .moon-card {
-  background: linear-gradient(135deg, rgba(5,10,25,0.9), rgba(8,16,35,0.9));
+  background: linear-gradient(135deg, rgba(10,18,30,0.82), rgba(14,22,38,0.72));
   display: flex;
   align-items: center;
   gap: 12px;
@@ -654,7 +628,7 @@ body::after {
   padding: 14px;
   border: 1px solid rgba(0,200,180,0.15);
   box-shadow: 0 0 12px rgba(0,200,180,0.05), 0 3px 12px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.03);
-  min-height: 220px;
+  min-height: 180px;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -701,10 +675,10 @@ body::after {
 /* FORECAST BARS */
 .forecast-bars {
   display: flex;
-  gap: 8px;
-  margin-bottom: 12px;
+  gap: 6px;
+  margin-bottom: 8px;
   align-items: flex-end;
-  height: 140px;
+  height: 100px;
 }
 
 .forecast-bar {
@@ -798,10 +772,10 @@ body::after {
 }
 
 .fish-card {
-  background: rgba(8,18,35,0.68);
-  border: 1px solid rgba(0,229,255,0.06);
-  border-radius: 8px;
-  padding: 10px;
+  background: rgba(10,18,30,0.6);
+  border: 1px solid rgba(0,200,180,0.12);
+  border-radius: 6px;
+  padding: 6px 8px;
   text-align: center;
   cursor: pointer;
   transition: transform 0.2s, box-shadow 0.2s;
@@ -814,10 +788,10 @@ body::after {
 }
 
 .fish-img {
-  width: 80px;
-  height: 50px;
+  width: 70px;
+  height: 42px;
   object-fit: contain;
-  margin: 0 auto 6px;
+  margin: 0 auto 4px;
   display: block;
 }
 
@@ -1180,26 +1154,28 @@ body::after {
 /* FOOTER */
 .footer {
   text-align: center;
-  margin-top: 14px;
-  padding-top: 12px;
-  border-top: 1px solid rgba(0,229,255,0.1);
-  font-size: 11px;
-  color: rgba(255,255,255,0.5);
-  line-height: 1.5;
+  margin-top: 8px;
+  padding-top: 6px;
+  border-top: 1px solid rgba(0,200,180,0.08);
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 10px;
+  color: rgba(150,180,190,0.5);
+  line-height: 1.4;
 }
 
 .refresh-btn-wrapper {
   text-align: center;
-  margin: 10px 0;
+  margin: 4px 0;
 }
 
 .refresh-btn {
-  background: linear-gradient(135deg, #00e5ff, #0077b6);
-  color: white;
-  border: none;
-  border-radius: 20px;
-  padding: 8px 20px;
-  font-size: 12px;
+  background: rgba(0,200,180,0.1);
+  color: rgba(0,220,200,0.8);
+  border: 1px solid rgba(0,200,180,0.3);
+  border-radius: 4px;
+  padding: 5px 16px;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 11px;
   font-weight: 700;
   cursor: pointer;
   transition: transform 0.2s;
@@ -1671,7 +1647,7 @@ body::after {
 .fc-day-grid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: 10px;
+  gap: 8px;
 }
 
 @media (max-width: 1100px) { .fc-day-grid { grid-template-columns: repeat(4, 1fr); } }
@@ -2191,7 +2167,7 @@ body::after {
       <div class="gauge-wrapper">
         <div class="gauge-ring-outer"></div>
         <div class="gauge-ring-inner"></div>
-        <svg width="240" height="240" viewBox="0 0 240 240" style="filter: drop-shadow(0 0 15px rgba(0,229,255,0.35))">
+        <svg width="220" height="220" viewBox="0 0 240 240" style="filter: drop-shadow(0 0 15px rgba(0,229,255,0.35))">
           <defs>
             <linearGradient id="gaugeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
               <stop offset="0%" style="stop-color:#ff5722;stop-opacity:1" />
@@ -2505,15 +2481,15 @@ body::after {
   <!-- ==================== PAGE: FORECAST ==================== -->
   <div id="page-forecast" class="page-view hidden">
     <div class="section-title">📅 7-Day Prime Fishing Forecast</div>
-    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:8px">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;flex-wrap:wrap;gap:6px">
       <div>
-        <div style="font-size:14px;font-weight:700;color:#fff">Key Biscayne, FL — Weekly Outlook</div>
-        <div style="font-size:11px;color:rgba(255,255,255,0.5)" id="forecastIntro">Loading forecast data...</div>
+        <div style="font-family:Rajdhani,sans-serif;font-size:13px;font-weight:600;color:#e0e8ea;letter-spacing:0.3px">Key Biscayne, FL — Weekly Outlook</div>
+        <div style="font-family:Rajdhani,sans-serif;font-size:10px;color:rgba(150,180,190,0.5)" id="forecastIntro">Loading forecast data...</div>
       </div>
       <div style="display:flex;gap:6px;align-items:center">
-        <span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#00e676"></span><span style="font-size:10px;color:rgba(255,255,255,0.5)">75+</span>
-        <span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#ff9800"></span><span style="font-size:10px;color:rgba(255,255,255,0.5)">50-74</span>
-        <span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#f44336"></span><span style="font-size:10px;color:rgba(255,255,255,0.5)">&lt;50</span>
+        <span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#00e676;box-shadow:0 0 6px rgba(0,230,118,0.4)"></span><span style="font-family:Rajdhani,sans-serif;font-size:9px;color:rgba(150,180,190,0.5)">71+</span>
+        <span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#ff9800;box-shadow:0 0 6px rgba(255,152,0,0.4)"></span><span style="font-family:Rajdhani,sans-serif;font-size:9px;color:rgba(150,180,190,0.5)">59-74</span>
+        <span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#f44336;box-shadow:0 0 6px rgba(244,67,54,0.4)"></span><span style="font-family:Rajdhani,sans-serif;font-size:9px;color:rgba(150,180,190,0.5)">&lt;59</span>
       </div>
     </div>
 
@@ -2526,18 +2502,18 @@ body::after {
       </div>
     </div>
 
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px" id="forecastWaterConditions">
-      <div class="panel" style="text-align:center;padding:20px">
-        <div style="font-size:10px;text-transform:uppercase;color:rgba(255,255,255,0.4);letter-spacing:1px;margin-bottom:4px">Water Temp</div>
-        <div style="font-size:28px;font-weight:700;color:#ff9800" id="fcWaterTemp">—</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px" id="forecastWaterConditions">
+      <div class="panel" style="text-align:center;padding:14px;min-height:auto">
+        <div style="font-family:Rajdhani,sans-serif;font-size:9px;text-transform:uppercase;color:rgba(150,180,190,0.5);letter-spacing:1.5px;margin-bottom:4px">Water Temp</div>
+        <div style="font-family:Orbitron,sans-serif;font-size:24px;font-weight:700;color:#ff9800;text-shadow:0 0 12px rgba(255,152,0,0.3)" id="fcWaterTemp">—</div>
       </div>
-      <div class="panel" style="text-align:center;padding:20px">
-        <div style="font-size:10px;text-transform:uppercase;color:rgba(255,255,255,0.4);letter-spacing:1px;margin-bottom:4px">Tide Status</div>
-        <div style="font-size:28px;font-weight:700;color:#00e5ff" id="fcTide">—</div>
+      <div class="panel" style="text-align:center;padding:14px;min-height:auto">
+        <div style="font-family:Rajdhani,sans-serif;font-size:9px;text-transform:uppercase;color:rgba(150,180,190,0.5);letter-spacing:1.5px;margin-bottom:4px">Tide Status</div>
+        <div style="font-family:Orbitron,sans-serif;font-size:24px;font-weight:700;color:#00e5ff;text-shadow:0 0 12px rgba(0,229,255,0.3)" id="fcTide">—</div>
       </div>
-      <div class="panel" style="text-align:center;padding:20px">
-        <div style="font-size:10px;text-transform:uppercase;color:rgba(255,255,255,0.4);letter-spacing:1px;margin-bottom:4px">Active Species</div>
-        <div style="font-size:14px;font-weight:600;color:#fff;line-height:1.5" id="fcSpecies">—</div>
+      <div class="panel" style="text-align:center;padding:14px;min-height:auto">
+        <div style="font-family:Rajdhani,sans-serif;font-size:9px;text-transform:uppercase;color:rgba(150,180,190,0.5);letter-spacing:1.5px;margin-bottom:4px">Active Species</div>
+        <div style="font-family:Rajdhani,sans-serif;font-size:13px;font-weight:600;color:#fff;line-height:1.4" id="fcSpecies">—</div>
       </div>
     </div>
   </div><!-- /page-forecast -->
