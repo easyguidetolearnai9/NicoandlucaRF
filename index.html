@@ -209,6 +209,19 @@ body {
   border-radius: 50%;
   background: linear-gradient(135deg, #3498db, #2980b9);
   flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stat-icon svg {
+  width: 28px;
+  height: 28px;
+  fill: none;
+  stroke: white;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 .stat-info {
@@ -1654,21 +1667,27 @@ body {
     <!-- LEFT COLUMN -->
     <div class="left-col">
       <div class="stat-card">
-        <div class="stat-icon"></div>
+        <div class="stat-icon">
+          <svg viewBox="0 0 24 24"><path d="M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 14 16H2m15.73-8.27A2.5 2.5 0 1 1 19.5 12H2"/></svg>
+        </div>
         <div class="stat-info">
           <div class="stat-label">Wind Speed</div>
           <div class="stat-value" id="windS">—</div>
         </div>
       </div>
       <div class="stat-card">
-        <div class="stat-icon"></div>
+        <div class="stat-icon" style="background:linear-gradient(135deg,#9b59b6,#8e44ad)">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
         <div class="stat-info">
           <div class="stat-label">Wave Period</div>
           <div class="stat-value" id="wavePeriod">—</div>
         </div>
       </div>
       <div class="stat-card">
-        <div class="stat-icon"></div>
+        <div class="stat-icon" style="background:linear-gradient(135deg,#1abc9c,#16a085)">
+          <svg viewBox="0 0 24 24"><path d="M2 12c2-3 4-4 6-4s4 3 6 3 4-3 6-3"/><path d="M2 17c2-3 4-4 6-4s4 3 6 3 4-3 6-3"/><line x1="12" y1="2" x2="12" y2="9"/><polyline points="8 5 12 2 16 5"/></svg>
+        </div>
         <div class="stat-info">
           <div class="stat-label">Wave Height</div>
           <div class="stat-value" id="waveH">—</div>
