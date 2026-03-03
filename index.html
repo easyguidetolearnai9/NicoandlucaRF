@@ -194,17 +194,18 @@ body {
 
 /* SECTION TITLE */
 .section-title {
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 700;
   color: #ffffff;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
+  text-shadow: 0 0 10px rgba(255,255,255,0.1);
 }
 
 /* ROW 1: CURRENT CONDITIONS DASHBOARD */
 .row1 {
   display: grid;
-  grid-template-columns: 220px 1fr 320px;
-  gap: 16px;
+  grid-template-columns: 200px 1fr 280px;
+  gap: 20px;
   margin-bottom: 20px;
 }
 
@@ -289,8 +290,8 @@ body {
 
 .gauge-wrapper {
   position: relative;
-  width: 200px;
-  height: 200px;
+  width: 240px;
+  height: 240px;
   margin-bottom: 20px;
 }
 
@@ -352,7 +353,7 @@ body {
 
 .gauge-bg, .gauge-progress {
   fill: none;
-  stroke-width: 12;
+  stroke-width: 14;
   transform: rotate(-135deg);
   transform-origin: center;
 }
@@ -377,15 +378,15 @@ body {
 }
 
 .gauge-score {
-  font-size: 54px;
+  font-size: 60px;
   font-weight: 800;
   color: #ffffff;
   line-height: 1;
-  text-shadow: 0 0 30px rgba(0,229,255,0.6), 0 0 60px rgba(0,229,255,0.25);
+  text-shadow: 0 0 30px rgba(0,229,255,0.5), 0 0 60px rgba(0,229,255,0.2);
 }
 
 .gauge-max {
-  font-size: 12px;
+  font-size: 14px;
   color: rgba(255,255,255,0.5);
 }
 
@@ -406,18 +407,19 @@ body {
 }
 
 .info-pill {
-  background: rgba(0,229,255,0.1);
+  background: rgba(0,0,0,0.2);
   border-radius: 12px;
-  padding: 6px 12px;
-  font-size: 10px;
+  padding: 5px 10px;
+  font-size: 9px;
   display: flex;
   align-items: center;
   gap: 4px;
-  color: #00e5ff;
+  color: rgba(255,255,255,0.7);
+  letter-spacing: 0.3px;
 }
 
-.info-pill.green { background: rgba(0,230,118,0.15); color: #00e676; }
-.info-pill.amber { background: rgba(255,152,0,0.15); color: #ff9800; }
+.info-pill.green { color: #00e676; }
+.info-pill.amber { color: #ff5722; }
 
 .pill-dot {
   width: 6px;
@@ -475,7 +477,7 @@ body {
   display: flex;
   align-items: center;
   gap: 6px;
-  color: rgba(255,255,255,0.7);
+  color: #00e5ff;
 }
 
 .info-card-value {
@@ -487,8 +489,9 @@ body {
 
 .tide-wave {
   width: 100%;
-  height: 40px;
+  height: 50px;
   margin: 8px 0;
+  filter: drop-shadow(0 0 6px rgba(0,229,255,0.3));
 }
 
 .moon-card {
@@ -500,7 +503,8 @@ body {
 }
 
 .moon-icon {
-  font-size: 36px;
+  font-size: 48px;
+  filter: drop-shadow(0 0 12px rgba(200,200,255,0.4));
 }
 
 .moon-info {
@@ -513,9 +517,10 @@ body {
 }
 
 .moon-phase {
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 700;
   color: white;
+  text-shadow: 0 0 8px rgba(200,200,255,0.3);
 }
 
 .moon-sub {
@@ -2055,7 +2060,7 @@ body {
       <div class="gauge-wrapper">
         <div class="gauge-ring-outer"></div>
         <div class="gauge-ring-inner"></div>
-        <svg width="200" height="200" viewBox="0 0 200 200" style="filter: drop-shadow(0 0 12px rgba(0,229,255,0.35))">
+        <svg width="240" height="240" viewBox="0 0 240 240" style="filter: drop-shadow(0 0 15px rgba(0,229,255,0.35))">
           <defs>
             <linearGradient id="gaugeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
               <stop offset="0%" style="stop-color:#ff5722;stop-opacity:1" />
@@ -2064,38 +2069,38 @@ body {
               <stop offset="100%" style="stop-color:#00e676;stop-opacity:1" />
             </linearGradient>
           </defs>
-          <!-- Outer decorative dot ring (r=95) -->
-          <g opacity="0.4">
-            <circle cx="100" cy="5" r="1.5" fill="#ffb74d"/>
-            <circle cx="130" cy="8" r="1.2" fill="#ffb74d"/>
-            <circle cx="157" cy="20" r="1.5" fill="#ffb74d"/>
-            <circle cx="177" cy="40" r="1.2" fill="#ffb74d"/>
-            <circle cx="190" cy="65" r="1.5" fill="#ffb74d"/>
-            <circle cx="195" cy="92" r="1.2" fill="#ffb74d"/>
-            <circle cx="190" cy="118" r="1.5" fill="#ffb74d"/>
-            <circle cx="177" cy="142" r="1.2" fill="#ffb74d"/>
-            <circle cx="157" cy="162" r="1.5" fill="#ffb74d"/>
-            <circle cx="135" cy="176" r="1.2" fill="#ffb74d"/>
-            <circle cx="110" cy="185" r="1.5" fill="#ffb74d"/>
-            <circle cx="90" cy="185" r="1.2" fill="#ffb74d"/>
-            <circle cx="65" cy="176" r="1.5" fill="#ffb74d"/>
-            <circle cx="43" cy="162" r="1.2" fill="#ffb74d"/>
-            <circle cx="23" cy="142" r="1.5" fill="#ffb74d"/>
-            <circle cx="10" cy="118" r="1.2" fill="#ffb74d"/>
-            <circle cx="5" cy="92" r="1.5" fill="#ffb74d"/>
-            <circle cx="10" cy="65" r="1.2" fill="#ffb74d"/>
-            <circle cx="23" cy="40" r="1.5" fill="#ffb74d"/>
-            <circle cx="43" cy="20" r="1.2" fill="#ffb74d"/>
-            <circle cx="70" cy="8" r="1.5" fill="#ffb74d"/>
-            <circle cx="100" cy="195" r="1.2" fill="#ffb74d"/>
-            <circle cx="120" cy="10" r="1" fill="#ffb74d"/>
-            <circle cx="80" cy="10" r="1" fill="#ffb74d"/>
+          <!-- Outer decorative dot ring (r=115) -->
+          <g opacity="0.35">
+            <circle cx="120" cy="5" r="1.5" fill="#ffb74d"/>
+            <circle cx="150" cy="8" r="1.2" fill="#ffb74d"/>
+            <circle cx="178" cy="18" r="1.5" fill="#ffb74d"/>
+            <circle cx="200" cy="35" r="1.2" fill="#ffb74d"/>
+            <circle cx="216" cy="58" r="1.5" fill="#ffb74d"/>
+            <circle cx="225" cy="85" r="1.2" fill="#ffb74d"/>
+            <circle cx="228" cy="112" r="1.5" fill="#ffb74d"/>
+            <circle cx="225" cy="140" r="1.2" fill="#ffb74d"/>
+            <circle cx="216" cy="165" r="1.5" fill="#ffb74d"/>
+            <circle cx="200" cy="188" r="1.2" fill="#ffb74d"/>
+            <circle cx="178" cy="205" r="1.5" fill="#ffb74d"/>
+            <circle cx="150" cy="218" r="1.2" fill="#ffb74d"/>
+            <circle cx="120" cy="228" r="1.5" fill="#ffb74d"/>
+            <circle cx="90" cy="218" r="1.2" fill="#ffb74d"/>
+            <circle cx="62" cy="205" r="1.5" fill="#ffb74d"/>
+            <circle cx="40" cy="188" r="1.2" fill="#ffb74d"/>
+            <circle cx="24" cy="165" r="1.5" fill="#ffb74d"/>
+            <circle cx="15" cy="140" r="1.2" fill="#ffb74d"/>
+            <circle cx="12" cy="112" r="1.5" fill="#ffb74d"/>
+            <circle cx="15" cy="85" r="1.2" fill="#ffb74d"/>
+            <circle cx="24" cy="58" r="1.5" fill="#ffb74d"/>
+            <circle cx="40" cy="35" r="1.2" fill="#ffb74d"/>
+            <circle cx="62" cy="18" r="1.5" fill="#ffb74d"/>
+            <circle cx="90" cy="8" r="1.2" fill="#ffb74d"/>
           </g>
-          <!-- Inner glow ring -->
-          <circle cx="100" cy="100" r="90" fill="none" stroke="rgba(0,229,255,0.06)" stroke-width="0.5"/>
-          <circle cx="100" cy="100" r="86" fill="none" stroke="rgba(255,180,60,0.05)" stroke-width="0.3"/>
-          <circle class="gauge-bg" cx="100" cy="100" r="80" stroke-dasharray="502.65" stroke-dashoffset="0"></circle>
-          <circle id="gaugeProgress" class="gauge-progress" cx="100" cy="100" r="80" stroke-dasharray="502.65" stroke-dashoffset="502.65"></circle>
+          <!-- Inner glow rings -->
+          <circle cx="120" cy="120" r="110" fill="none" stroke="rgba(0,229,255,0.05)" stroke-width="0.5"/>
+          <circle cx="120" cy="120" r="105" fill="none" stroke="rgba(255,180,60,0.04)" stroke-width="0.3"/>
+          <circle class="gauge-bg" cx="120" cy="120" r="95" stroke-dasharray="596.90" stroke-dashoffset="0"></circle>
+          <circle id="gaugeProgress" class="gauge-progress" cx="120" cy="120" r="95" stroke-dasharray="596.90" stroke-dashoffset="596.90"></circle>
         </svg>
         <div class="gauge-center">
           <div class="gauge-score" id="primeNum">—</div>
@@ -2106,15 +2111,19 @@ body {
       <div class="gauge-status" id="primeTitle">Calculating Prime Score...</div>
       
       <div class="info-pills">
-        <div class="info-pill green">
-          <span class="pill-dot green"></span>
-          <span>FEEDING WINDOWS</span>
-          <span id="moonriseTime">—</span>
-        </div>
         <div class="info-pill amber">
           <span class="pill-dot amber"></span>
-          <span>OPTIMAL WINDOW</span>
+          <span>FEEDING</span>
+          <span id="moonriseTime">—</span>
+        </div>
+        <div class="info-pill green">
+          <span class="pill-dot green"></span>
+          <span>OPTIMAL</span>
           <span id="moonOverTime">—</span>
+        </div>
+        <div class="info-pill green">
+          <span class="pill-dot green"></span>
+          <span>OPTIMAL</span>
         </div>
       </div>
       
@@ -3077,7 +3086,7 @@ function updatePrimeScoreUI() {
   const { total, scores, maxScores, solunar, waterTemp, sunrise, sunset, currentHour } = primeScoreData;
   
   const pct = Math.round((total / 100) * 100);
-  const circumference = 2 * Math.PI * 80;
+  const circumference = 2 * Math.PI * 95;
   const offset = circumference - (pct / 100) * (circumference * 0.75);
   document.getElementById('gaugeProgress').style.strokeDashoffset = offset;
   
@@ -3085,15 +3094,20 @@ function updatePrimeScoreUI() {
   
   const title = document.getElementById('primeTitle');
   if (total >= 90) {
-    title.textContent = '🔥 Legendary Conditions';
+    title.innerHTML = '🔥 LEGENDARY Conditions';
+    title.style.color = '#ff5722';
   } else if (total >= 75) {
-    title.textContent = '⭐ Prime Conditions Detected';
+    title.innerHTML = '⭐ PRIME Conditions';
+    title.style.color = '#ffeb3b';
   } else if (total >= 60) {
-    title.textContent = '👍 Favorable Conditions';
+    title.innerHTML = '✓ FAVORABLE Conditions';
+    title.style.color = '#00e676';
   } else if (total >= 40) {
-    title.textContent = '🤷 Mixed Conditions';
+    title.innerHTML = '⚠ MIXED Conditions';
+    title.style.color = '#ff9800';
   } else {
-    title.textContent = '⏳ Suboptimal Conditions';
+    title.innerHTML = '⏳ SUBOPTIMAL Conditions';
+    title.style.color = '#f44336';
   }
   
   // Update solunar times
