@@ -1393,30 +1393,133 @@ body {
   border: 1px solid rgba(255,152,0,0.3);
 }
 
-/* FORECAST DAY CARD */
-.forecast-day-card {
-  background: rgba(255,255,255,0.9);
-  border-radius: 10px;
-  padding: 16px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+/* FORECAST DAY GRID */
+.fc-day-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 10px;
 }
 
-.forecast-day-card h4 {
-  font-size: 14px;
+@media (max-width: 1100px) { .fc-day-grid { grid-template-columns: repeat(4, 1fr); } }
+@media (max-width: 700px) { .fc-day-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 400px) { .fc-day-grid { grid-template-columns: 1fr; } }
+
+/* FORECAST DAY CARD */
+.fc-card {
+  background: rgba(255,255,255,0.92);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.fc-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+}
+
+.fc-card.today {
+  border: 2px solid #FF9800;
+}
+
+.fc-card-header {
+  padding: 12px 14px 10px;
+  color: white;
+  position: relative;
+}
+
+.fc-card-header.high { background: linear-gradient(135deg, #43A047, #2E7D32); }
+.fc-card-header.medium { background: linear-gradient(135deg, #FB8C00, #EF6C00); }
+.fc-card-header.low { background: linear-gradient(135deg, #E53935, #C62828); }
+
+.fc-card-day {
+  font-size: 13px;
   font-weight: 700;
-  margin-bottom: 8px;
+  margin-bottom: 2px;
+}
+
+.fc-card-date {
+  font-size: 10px;
+  opacity: 0.85;
+}
+
+.fc-card-score {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  font-size: 28px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.fc-card-score-label {
+  position: absolute;
+  top: 38px;
+  right: 12px;
+  font-size: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  opacity: 0.8;
+}
+
+.fc-card-body {
+  padding: 10px 14px 14px;
+}
+
+.fc-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 5px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.04);
+  font-size: 11px;
 }
 
-.forecast-day-card .day-detail {
-  font-size: 11px;
-  color: #666;
-  margin-bottom: 3px;
+.fc-row:last-child { border-bottom: none; }
+
+.fc-row-label {
+  color: #888;
   display: flex;
   align-items: center;
   gap: 4px;
+}
+
+.fc-row-value {
+  font-weight: 600;
+  color: #333;
+}
+
+.fc-row-value.good { color: #2E7D32; }
+.fc-row-value.ok { color: #E65100; }
+.fc-row-value.bad { color: #C62828; }
+
+.fc-moon-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(0,0,0,0.06);
+}
+
+.fc-moon-emoji { font-size: 18px; }
+
+.fc-moon-info {
+  font-size: 10px;
+  color: #666;
+  line-height: 1.3;
+}
+
+.fc-best-time {
+  margin-top: 8px;
+  padding: 6px 10px;
+  background: rgba(255, 152, 0, 0.1);
+  border: 1px solid rgba(255, 152, 0, 0.2);
+  border-radius: 6px;
+  font-size: 10px;
+  color: #E65100;
+  font-weight: 600;
+  text-align: center;
 }
 
 .score-pill {
@@ -1978,26 +2081,39 @@ body {
   <!-- ==================== PAGE: FORECAST ==================== -->
   <div id="page-forecast" class="page-view hidden">
     <div class="section-title">📅 7-Day Prime Fishing Forecast</div>
-    <div class="panel" style="margin-bottom:16px">
-      <div class="panel-title">Key Biscayne, FL — Weekly Outlook</div>
-      <p style="font-size:12px;color:#666;margin-bottom:16px" id="forecastIntro">Loading forecast data...</p>
-      <div id="forecastFullBars" style="display:flex;gap:12px;align-items:flex-end;height:200px;margin-bottom:20px"></div>
-      <div id="forecastDayCards" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px"></div>
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:8px">
+      <div>
+        <div style="font-size:14px;font-weight:700;color:#333">Key Biscayne, FL — Weekly Outlook</div>
+        <div style="font-size:11px;color:#888" id="forecastIntro">Loading forecast data...</div>
+      </div>
+      <div style="display:flex;gap:6px;align-items:center">
+        <span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#4CAF50"></span><span style="font-size:10px;color:#666">75+</span>
+        <span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#FF9800"></span><span style="font-size:10px;color:#666">50-74</span>
+        <span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#F44336"></span><span style="font-size:10px;color:#666">&lt;50</span>
+      </div>
     </div>
 
-    <div class="panel" style="margin-bottom:16px">
+    <div id="forecastDayCards" class="fc-day-grid"></div>
+
+    <div class="panel" style="margin-top:16px;margin-bottom:16px">
       <div class="panel-title">🕐 Today's Hourly Breakdown</div>
       <div id="hourlyBreakdown" style="overflow-x:auto">
         <div id="hourlyGrid" style="display:flex;gap:8px;min-width:max-content;padding:8px 0"></div>
       </div>
     </div>
 
-    <div class="panel">
-      <div class="panel-title">🌊 Water Conditions</div>
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px" id="forecastWaterConditions">
-        <div class="stat-card"><div class="stat-info"><div class="stat-label">Water Temp</div><div class="stat-value" id="fcWaterTemp">—</div></div></div>
-        <div class="stat-card"><div class="stat-info"><div class="stat-label">Tide Status</div><div class="stat-value" id="fcTide">—</div></div></div>
-        <div class="stat-card"><div class="stat-info"><div class="stat-label">Active Species</div><div class="stat-value" id="fcSpecies" style="font-size:14px">—</div></div></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px" id="forecastWaterConditions">
+      <div class="panel" style="text-align:center;padding:20px">
+        <div style="font-size:10px;text-transform:uppercase;color:#888;letter-spacing:1px;margin-bottom:4px">Water Temp</div>
+        <div style="font-size:28px;font-weight:700;color:#E65100" id="fcWaterTemp">—</div>
+      </div>
+      <div class="panel" style="text-align:center;padding:20px">
+        <div style="font-size:10px;text-transform:uppercase;color:#888;letter-spacing:1px;margin-bottom:4px">Tide Status</div>
+        <div style="font-size:28px;font-weight:700;color:#2196F3" id="fcTide">—</div>
+      </div>
+      <div class="panel" style="text-align:center;padding:20px">
+        <div style="font-size:10px;text-transform:uppercase;color:#888;letter-spacing:1px;margin-bottom:4px">Active Species</div>
+        <div style="font-size:14px;font-weight:600;color:#333;line-height:1.5" id="fcSpecies">—</div>
       </div>
     </div>
   </div><!-- /page-forecast -->
@@ -3625,108 +3741,142 @@ function populateForecastPage() {
     return;
   }
   
-  document.getElementById('forecastIntro').textContent = 'Prime Score predictions based on 10 real-time data sources. Updated every 10 minutes.';
+  document.getElementById('forecastIntro').textContent = '10 real-time data sources · Auto-updates every 10 min';
   
-  // Full-size bars
-  const barsEl = document.getElementById('forecastFullBars');
   const cardsEl = document.getElementById('forecastDayCards');
-  barsEl.innerHTML = '';
   cardsEl.innerHTML = '';
   
   const days = marine.daily.time.slice(0, 7);
-  const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+  const dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  const dayNamesShort = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
   const hourlyCloud = weather?.hourly?.cloud_cover ?? [];
   const hourlyPressure = weather?.hourly?.pressure_msl ?? [];
   const hourlyPrecip = weather?.hourly?.precipitation_probability ?? [];
+  const hourlyWind = weather?.hourly?.wind_speed_10m ?? [];
+  const hourlyWindDir = weather?.hourly?.wind_direction_10m ?? [];
   
-  const dayScores = [];
-  const dayDetails = [];
+  const todayStr = new Date().toDateString();
   
   days.forEach((dateStr, i) => {
     const d = new Date(dateStr + 'T12:00:00');
+    const isToday = d.toDateString() === todayStr;
     const maxWaveFt = (marine.daily.wave_height_max[i] ?? 0) * 3.281;
+    const maxWavePeriod = marine.daily.wave_period_max?.[i] ?? null;
     const waveScore = scoreWaveHeight(maxWaveFt);
     
     const hourStart = i * 24 + 8;
     const hourEnd = i * 24 + 18;
-    let avgCloud = 50, avgPrecip = 20;
+    let avgCloud = 50, avgPrecip = 20, avgWind = 10, avgPressure = 1013;
+    let windDir = '';
+    
     if (hourlyCloud.length > hourEnd) {
       const slice = hourlyCloud.slice(hourStart, hourEnd);
-      avgCloud = slice.reduce((a, b) => a + b, 0) / slice.length;
+      avgCloud = Math.round(slice.reduce((a, b) => a + b, 0) / slice.length);
     }
     if (hourlyPrecip.length > hourEnd) {
       const slice = hourlyPrecip.slice(hourStart, hourEnd);
-      avgPrecip = slice.reduce((a, b) => a + b, 0) / slice.length;
+      avgPrecip = Math.round(slice.reduce((a, b) => a + b, 0) / slice.length);
+    }
+    if (hourlyWind && hourlyWind.length > hourEnd) {
+      const slice = hourlyWind.slice(hourStart, hourEnd);
+      avgWind = Math.round(slice.reduce((a, b) => a + b, 0) / slice.length);
+    }
+    if (hourlyWindDir && hourlyWindDir.length > hourStart) {
+      const deg = hourlyWindDir[hourStart + 4] ?? 0;
+      const dirs = ['N','NNE','NE','ENE','E','ESE','SE','SSE','S','SSW','SW','WSW','W','WNW','NW','NNW'];
+      windDir = dirs[Math.round(deg / 22.5) % 16];
+    }
+    if (hourlyPressure.length > hourStart) {
+      avgPressure = hourlyPressure[hourStart + 4] ?? 1013;
     }
     
     const dayMoon = getMoonPhase(d);
     const nearFullOrNew = Math.min(Math.abs(dayMoon.age), Math.abs(dayMoon.age - 29.53), Math.abs(dayMoon.age - 14.76));
     const solunarStrength = 1.0 - (nearFullOrNew / 14.76) * 0.5;
     const solunarScore = Math.round(solunarStrength * 12);
+    const solunarRating = solunarScore >= 10 ? 'Excellent' : solunarScore >= 7 ? 'Good' : solunarScore >= 4 ? 'Fair' : 'Poor';
     
     const baseExtras = 12 + 8 + 3 + 5;
     const cloudScore = scoreCloudCover(avgCloud);
     const precipScore = scorePrecip(avgPrecip);
     
+    let pressureTrend = 'Stable';
     let pressureScore = 10;
     if (hourlyPressure.length > hourEnd) {
       const morningP = hourlyPressure[hourStart] ?? 1013;
       const afternoonP = hourlyPressure[hourStart + 6] ?? 1013;
       const trend = morningP - afternoonP;
-      if (trend > 2) pressureScore = 14;
-      else if (trend > 1) pressureScore = 12;
-      else if (Math.abs(trend) <= 1) pressureScore = 10;
-      else if (trend < -2) pressureScore = 3;
-      else pressureScore = 6;
+      if (trend > 2) { pressureScore = 14; pressureTrend = 'Falling ↓'; }
+      else if (trend > 1) { pressureScore = 12; pressureTrend = 'Dropping ↘'; }
+      else if (Math.abs(trend) <= 1) { pressureScore = 10; pressureTrend = 'Stable →'; }
+      else if (trend < -2) { pressureScore = 3; pressureTrend = 'Rising ↑'; }
+      else { pressureScore = 6; pressureTrend = 'Rising ↗'; }
     }
     
     const dayScore = Math.min(100, waveScore + cloudScore + pressureScore + precipScore + solunarScore + scoreSeason() + baseExtras);
-    dayScores.push(dayScore);
-    dayDetails.push({
-      date: d,
-      dayName: dayNames[d.getDay()],
-      score: dayScore,
-      waveFt: maxWaveFt,
-      cloud: Math.round(avgCloud),
-      precip: Math.round(avgPrecip),
-      moon: dayMoon,
-      solunar: solunarScore
-    });
-  });
-  
-  // Render big bars
-  const maxScore = Math.max(...dayScores);
-  dayDetails.forEach((dd, i) => {
-    const height = Math.max(50, (dd.score / 100) * 200);
-    const scoreCls = dd.score >= 75 ? 'high' : dd.score >= 50 ? 'medium' : 'low';
-    const isToday = i === 0;
+    const scoreCls = dayScore >= 75 ? 'high' : dayScore >= 50 ? 'medium' : 'low';
     
-    const wrapper = document.createElement('div');
-    wrapper.style.cssText = 'flex:1;display:flex;flex-direction:column;align-items:center;';
-    wrapper.innerHTML = `
-      <div style="height:${height}px;width:100%;background:linear-gradient(to bottom,${dd.score >= 75 ? '#4CAF50,#388E3C' : dd.score >= 50 ? '#FF9800,#F57C00' : '#F44336,#D32F2F'});border-radius:6px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:transform 0.2s;${isToday ? 'border:2px solid #FFD700;' : ''}" onmouseenter="this.style.transform='translateY(-4px)'" onmouseleave="this.style.transform=''">
-        <span style="font-size:18px;font-weight:700;color:white;text-shadow:0 1px 3px rgba(0,0,0,0.5)">${Math.round(dd.score)}</span>
-      </div>
-      <div style="font-size:11px;color:#666;margin-top:6px;font-weight:${isToday ? '700' : '500'}">${dd.dayName} ${dd.date.getDate()}</div>
-      <div style="font-size:9px;color:#aaa">${dd.moon.emoji}</div>
-    `;
-    barsEl.appendChild(wrapper);
-  });
-  
-  // Render day cards
-  dayDetails.forEach(dd => {
-    const scoreCls = dd.score >= 75 ? 'high' : dd.score >= 50 ? 'medium' : 'low';
-    const dateStr = dd.date.toLocaleDateString('en-US', { weekday: 'long', month: 'short', day: 'numeric' });
+    // Wave quality label
+    const waveLabel = maxWaveFt <= 1 ? 'Flat/Calm' : maxWaveFt <= 2 ? 'Light chop' : maxWaveFt <= 3 ? 'Moderate' : maxWaveFt <= 4 ? 'Choppy' : 'Rough';
+    const waveClass = maxWaveFt <= 2 ? 'good' : maxWaveFt <= 3 ? 'ok' : 'bad';
+    
+    // Wind quality
+    const windLabel = avgWind <= 8 ? 'Light' : avgWind <= 12 ? 'Moderate' : avgWind <= 18 ? 'Breezy' : 'Strong';
+    const windClass = avgWind <= 10 ? 'good' : avgWind <= 15 ? 'ok' : 'bad';
+    
+    // Precip quality
+    const precipClass = avgPrecip <= 20 ? 'good' : avgPrecip <= 50 ? 'ok' : 'bad';
+    
+    // Pressure quality
+    const pressureClass = pressureTrend.includes('Falling') || pressureTrend.includes('Dropping') ? 'good' : pressureTrend.includes('Stable') ? 'ok' : 'bad';
+    
+    // Best fishing window estimate
+    const daySolunar = getSolunarTimes(d);
+    const majorPeriod = daySolunar.periods.find(p => p.type === 'major');
+    const bestTimeStr = majorPeriod ? formatHour(majorPeriod.hour) : '—';
+    
+    const dateFormatted = d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
     
     const card = document.createElement('div');
-    card.className = 'forecast-day-card';
+    card.className = 'fc-card' + (isToday ? ' today' : '');
     card.innerHTML = `
-      <h4>${dateStr} <span class="score-pill ${scoreCls}">${Math.round(dd.score)}/100</span></h4>
-      <div class="day-detail">🌊 Wave Height: ${dd.waveFt.toFixed(1)} ft</div>
-      <div class="day-detail">☁️ Cloud Cover: ${dd.cloud}%</div>
-      <div class="day-detail">🌧️ Precip Chance: ${dd.precip}%</div>
-      <div class="day-detail">${dd.moon.emoji} Moon: ${dd.moon.phaseName}</div>
-      <div class="day-detail">🌟 Solunar Score: ${dd.solunar}/12</div>
+      <div class="fc-card-header ${scoreCls}">
+        <div class="fc-card-day">${isToday ? 'TODAY' : dayNamesShort[d.getDay()]}</div>
+        <div class="fc-card-date">${dateFormatted}</div>
+        <div class="fc-card-score">${Math.round(dayScore)}</div>
+        <div class="fc-card-score-label">Prime Score</div>
+      </div>
+      <div class="fc-card-body">
+        <div class="fc-row">
+          <span class="fc-row-label">🌊 Waves</span>
+          <span class="fc-row-value ${waveClass}">${maxWaveFt.toFixed(1)} ft · ${waveLabel}</span>
+        </div>
+        <div class="fc-row">
+          <span class="fc-row-label">💨 Wind</span>
+          <span class="fc-row-value ${windClass}">${avgWind} mph ${windDir} · ${windLabel}</span>
+        </div>
+        <div class="fc-row">
+          <span class="fc-row-label">🌧️ Rain</span>
+          <span class="fc-row-value ${precipClass}">${avgPrecip}%</span>
+        </div>
+        <div class="fc-row">
+          <span class="fc-row-label">☁️ Cloud</span>
+          <span class="fc-row-value">${avgCloud}%</span>
+        </div>
+        <div class="fc-row">
+          <span class="fc-row-label">📊 Pressure</span>
+          <span class="fc-row-value ${pressureClass}">${Math.round(avgPressure)} mb · ${pressureTrend}</span>
+        </div>
+        <div class="fc-row">
+          <span class="fc-row-label">🌟 Solunar</span>
+          <span class="fc-row-value ${solunarScore >= 8 ? 'good' : solunarScore >= 5 ? 'ok' : 'bad'}">${solunarRating}</span>
+        </div>
+        <div class="fc-moon-row">
+          <span class="fc-moon-emoji">${dayMoon.emoji}</span>
+          <span class="fc-moon-info">${dayMoon.phaseName}</span>
+        </div>
+        <div class="fc-best-time">🎯 Best Window: ${bestTimeStr}</div>
+      </div>
     `;
     cardsEl.appendChild(card);
   });
