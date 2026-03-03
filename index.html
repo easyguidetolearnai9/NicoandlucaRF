@@ -2435,7 +2435,7 @@ const LAT = 25.69;
 const LON = -80.16;
 
 const MARINE_API = `https://marine-api.open-meteo.com/v1/marine?latitude=${LAT}&longitude=${LON}&daily=wave_height_max,wave_period_max,wind_wave_height_max&current=wave_height,wave_period,wind_wave_height&timezone=America%2FNew_York&forecast_days=7`;
-const WEATHER_API = `https://api.open-meteo.com/v1/forecast?latitude=${LAT}&longitude=${LON}&current=wind_speed_10m,wind_direction_10m,wind_gusts_10m,cloud_cover,precipitation,pressure_msl&hourly=pressure_msl,cloud_cover,precipitation_probability,uv_index&daily=sunrise,sunset&timezone=America/New_York&forecast_days=2`;
+const WEATHER_API = `https://api.open-meteo.com/v1/forecast?latitude=${LAT}&longitude=${LON}&current=wind_speed_10m,wind_direction_10m,wind_gusts_10m,cloud_cover,precipitation,pressure_msl&hourly=pressure_msl,cloud_cover,precipitation_probability,uv_index,wind_speed_10m,wind_direction_10m&daily=sunrise,sunset&timezone=America/New_York&forecast_days=7`;
 const WATER_TEMP_API = `https://api.tidesandcurrents.noaa.gov/api/prod/datagetter?date=latest&station=${TIDE_STATION}&product=water_temperature&units=english&time_zone=lst_ldt&format=json`;
 
 function showToast(msg, duration = 2500) {
@@ -3722,7 +3722,10 @@ fetchForecast = async function() {
     build7DayForecast(marine, weather);
     
     // Update forecast page if visible
+    // Auto-update whichever page is active
     if (currentPage === 'forecast') populateForecastPage();
+    if (currentPage === 'species') populateSpeciesPage();
+    if (currentPage === 'charters') populateChartersPage();
     
   } catch (err) {
     console.error('Forecast error:', err);
