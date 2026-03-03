@@ -383,7 +383,7 @@
     </div>
 
     <!-- 10-Factor Grid -->
-    <div class="prime-factors" id="primeFactors">
+    <div class="prime-factors" id="primeFactors" style="display:none">
       <div class="prime-factor"><div class="prime-factor-icon">🌊</div><div class="prime-factor-name">Wave Height</div><div class="prime-factor-val" id="pf1">—</div><div class="prime-factor-bar"><div class="prime-factor-fill" id="pf1bar"></div></div></div>
       <div class="prime-factor"><div class="prime-factor-icon">💨</div><div class="prime-factor-name">Wind</div><div class="prime-factor-val" id="pf2">—</div><div class="prime-factor-bar"><div class="prime-factor-fill" id="pf2bar"></div></div></div>
       <div class="prime-factor"><div class="prime-factor-icon">📉</div><div class="prime-factor-name">Pressure Trend</div><div class="prime-factor-val" id="pf3">—</div><div class="prime-factor-bar"><div class="prime-factor-fill" id="pf3bar"></div></div></div>
@@ -631,6 +631,7 @@
   </div>
 
   <div class="tip" id="tip" style="display:none"><strong>🎣 Fishing Tip:</strong> <span id="tipText"></span></div>
+  <div id="lastUpdated" style="text-align:center;font-size:.75rem;color:#5b8fa8;margin-top:18px">Loading conditions...</div>
   <button class="refresh-btn" onclick="fetchForecast()">🔄 Refresh Conditions</button>
   <div class="footer">
     Wave data from <strong>Open-Meteo Marine API</strong> · Tides from <strong>NOAA CO-OPS</strong><br>
@@ -1189,36 +1190,103 @@ function build7DayForecast(marine, weather) {
   const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
   let bestDayIdx = -1;
   let bestDayScore = 0;
+  const dayScores = [];
+
+  // Get hourly data for enhanced scoring (available for first 2 days typically)
+  const hourlyCloud = weather?.hourly?.cloud_cover ?? [];
+  const hourlyPressure = weather?.hourly?.pressure_msl ?? [];
+  const hourlyPrecip = weather?.hourly?.precipitation_probability ?? [];
 
   days.forEach((dateStr, i) => {
     const d = new Date(dateStr + 'T12:00:00');
     const maxWaveFt = (marine.daily.wave_height_max[i] ?? 0) * 3.281;
 
-    // Simple daily score estimate (wave + cloud + season)
+    // Wave score (0-12)
     const waveScore = scoreWaveHeight(maxWaveFt);
-    const cloudScore = scoreCloudCover(50); // default
+
+    // Cloud cover for this day (average of daylight hours 8am-6pm = indices 8-18)
+    const hourStart = i * 24 + 8;
+    const hourEnd = i * 24 + 18;
+    let avgCloud = 50; // default
+    if (hourlyCloud.length > hourEnd) {
+      const dayCloudSlice = hourlyCloud.slice(hourStart, hourEnd);
+      avgCloud = dayCloudSlice.reduce((a, b) => a + b, 0) / dayCloudSlice.length;
+    }
+    const cloudScore = scoreCloudCover(avgCloud);
+
+    // Pressure trend for this day
+    let pressureScore = 10; // default stable
+    if (hourlyPressure.length > hourEnd) {
+      const morningP = hourlyPressure[hourStart] ?? 1013;
+      const afternoonP = hourlyPressure[hourStart + 6] ?? 1013;
+      const trend = morningP - afternoonP; // positive = falling
+      if (trend > 2) pressureScore = 14;
+      else if (trend > 1) pressureScore = 12;
+      else if (Math.abs(trend) <= 1) pressureScore = 10;
+      else if (trend < -2) pressureScore = 3;
+      else pressureScore = 6;
+    }
+
+    // Precipitation risk
+    let precipScore = 4; // default
+    if (hourlyPrecip.length > hourEnd) {
+      const dayPrecipSlice = hourlyPrecip.slice(hourStart, hourEnd);
+      const avgPrecip = dayPrecipSlice.reduce((a, b) => a + b, 0) / dayPrecipSlice.length;
+      if (avgPrecip <= 10) precipScore = 5;
+      else if (avgPrecip <= 30) precipScore = 4;
+      else if (avgPrecip <= 50) precipScore = 3;
+      else if (avgPrecip <= 70) precipScore = 2;
+      else precipScore = 0;
+    }
+
+    // Solunar for this day (moon phase strength)
+    const dayMoon = getMoonPhase(d);
+    const nearFullOrNew = Math.min(
+      Math.abs(dayMoon.age), Math.abs(dayMoon.age - 29.53), Math.abs(dayMoon.age - 14.76)
+    );
+    const solunarStrength = 1.0 - (nearFullOrNew / 14.76) * 0.5;
+    const solunarScore = Math.round(solunarStrength * 12);
+
+    // Season + tide + wind + dawn/dusk + water temp = use reasonable defaults for forecast
     const seasonScore = scoreSeason();
-    const dayScore = waveScore + cloudScore + seasonScore + 60; // approx total/100 * 30
+    const baseExtras = 12 + 8 + 3 + 5; // tide(avg) + wind(avg) + dawn(avg) + watertemp(avg)
+
+    const dayScore = Math.min(100, waveScore + cloudScore + pressureScore + precipScore + solunarScore + seasonScore + baseExtras);
+    dayScores.push(dayScore);
 
     if (dayScore > bestDayScore) {
       bestDayScore = dayScore;
       bestDayIdx = i;
     }
+  });
+
+  // Second pass to render (now we know the best day)
+  days.forEach((dateStr, i) => {
+    const d = new Date(dateStr + 'T12:00:00');
+    const dayScore = dayScores[i];
+    const maxWaveFt = (marine.daily.wave_height_max[i] ?? 0) * 3.281;
 
     let cls = 'calm', icon = '🎣', scoreClass = 'solid';
+    if (dayScore >= 85) { cls = 'calm'; icon = '🔥'; scoreClass = 'legendary'; }
+    else if (dayScore >= 70) { cls = 'calm'; icon = '⭐'; scoreClass = 'prime'; }
+    else if (dayScore >= 55) { cls = 'moderate'; icon = '👍'; scoreClass = 'solid'; }
+    else if (dayScore >= 40) { cls = 'moderate'; icon = '🤷'; scoreClass = 'average'; }
+    else { cls = 'rough'; icon = '⏳'; scoreClass = 'wait'; }
+
     if (maxWaveFt > 4) { cls = 'rough'; icon = '🌊'; scoreClass = 'wait'; }
-    else if (maxWaveFt > 2) { cls = 'moderate'; icon = '🤔'; scoreClass = 'average'; }
-    else if (dayScore >= 90) { icon = '🔥'; scoreClass = 'legendary'; }
-    else if (dayScore >= 75) { icon = '⭐'; scoreClass = 'prime'; }
+
+    const isBest = i === bestDayIdx;
+    const bestTag = isBest ? '<div style="font-size:.65rem;color:#f9e866;margin-top:2px">⭐ BEST DAY</div>' : '';
 
     const c = document.createElement('div');
-    c.className = 'forecast-card ' + cls + (i === bestDayIdx ? ' best-day' : '');
+    c.className = 'forecast-card ' + cls + (isBest ? ' best-day' : '');
     c.innerHTML = `
       <div class="day">${dayNames[d.getDay()]}</div>
       <div class="date">${d.toLocaleDateString('en-US',{month:'short',day:'numeric'})}</div>
       <div class="icon">${icon}</div>
       <div class="prime-mini ${scoreClass}">${Math.round(dayScore)}</div>
       <div class="label">Prime Score</div>
+      ${bestTag}
     `;
     grid.appendChild(c);
   });
@@ -2052,8 +2120,55 @@ function getTimeAgo(date){
 // ===============================================
 buildAllSeasonPanels();
 populateCurrentSeason();
-fetchForecast();
 renderCatchFeed();
+
+// ===============================================
+// AUTO-REFRESH ENGINE (every 10 minutes)
+// ===============================================
+let lastUpdateTime = null;
+
+function updateLastUpdatedDisplay() {
+  const el = document.getElementById('lastUpdated');
+  if (!lastUpdateTime) return;
+  const now = new Date();
+  const mins = Math.floor((now - lastUpdateTime) / 60000);
+  if (mins < 1) {
+    el.textContent = '✅ Conditions updated just now';
+  } else {
+    el.textContent = `📊 Last updated ${mins} minute${mins === 1 ? '' : 's'} ago · Auto-refreshes every 10 min`;
+  }
+}
+
+// Mark update time after each fetch
+const origFetchForecast = fetchForecast;
+fetchForecast = async function() {
+  await origFetchForecast();
+  lastUpdateTime = new Date();
+  updateLastUpdatedDisplay();
+};
+
+// Refresh data every 10 minutes (only when page is visible)
+let refreshInterval = setInterval(() => {
+  if (!document.hidden) {
+    fetchForecast();
+  }
+}, 10 * 60 * 1000);
+
+// Update the "X minutes ago" display every 30 seconds
+setInterval(updateLastUpdatedDisplay, 30000);
+
+// Pause/resume on visibility change
+document.addEventListener('visibilitychange', () => {
+  if (!document.hidden && lastUpdateTime) {
+    const mins = (Date.now() - lastUpdateTime.getTime()) / 60000;
+    if (mins >= 10) {
+      fetchForecast(); // Refresh if stale when returning to tab
+    }
+  }
+});
+
+// Initial fetch (triggers the wrapped version)
+fetchForecast();
 </script>
 </body>
 </html>
