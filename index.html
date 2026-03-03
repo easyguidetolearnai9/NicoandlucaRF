@@ -15,10 +15,10 @@
 
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  background: linear-gradient(180deg, rgba(5,10,25,0.3) 0%, rgba(8,16,32,0.5) 40%, rgba(5,12,25,0.6) 100%), url('https://images.unsplash.com/photo-1725830674531-794510b656e9?w=1920&q=80');
+  background: linear-gradient(180deg, rgba(3,8,20,0.6) 0%, rgba(5,12,28,0.78) 30%, rgba(3,8,20,0.88) 100%), url('https://images.unsplash.com/photo-1744799163503-74036eff6027?w=1920&q=80');
   background-size: cover;
   background-attachment: fixed;
-  background-position: center;
+  background-position: center top;
   background-color: #0a1628;
   min-height: 100vh;
   color: #ffffff;
@@ -33,7 +33,7 @@ body {
   top: 0;
   z-index: 100;
   height: 50px;
-  background: rgba(5,10,25,0.75);
+  background: rgba(3,8,20,0.92);
   backdrop-filter: blur(16px);
   display: flex;
   align-items: center;
@@ -111,7 +111,7 @@ body {
 .mobile-menu {
   display: none;
   flex-direction: column;
-  background: rgba(5,10,25,0.85);
+  background: rgba(3,8,20,0.95);
   backdrop-filter: blur(16px);
   padding: 8px 0;
   position: sticky;
@@ -175,7 +175,7 @@ body {
 /* SUBHEADER */
 .subheader {
   height: 28px;
-  background: rgba(8,20,45,0.38);
+  background: rgba(6,16,38,0.62);
   display: flex;
   align-items: center;
   padding: 0 15px;
@@ -218,12 +218,12 @@ body {
 }
 
 .stat-card {
-  background: rgba(8,20,45,0.5);
+  background: rgba(6,16,38,0.72);
   backdrop-filter: blur(16px) saturate(1.3);
   -webkit-backdrop-filter: blur(16px) saturate(1.3);
   border-radius: 14px;
   padding: 14px;
-  border: 1px solid rgba(0,229,255,0.15);
+  border: 1px solid rgba(0,229,255,0.22);
   box-shadow: 0 4px 20px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.05);
   display: flex;
   align-items: center;
@@ -274,7 +274,7 @@ body {
 
 /* CENTER COLUMN - Score Gauge */
 .center-col {
-  background: rgba(8,20,45,0.4);
+  background: rgba(6,14,32,0.7);
   backdrop-filter: blur(16px) saturate(1.3);
   -webkit-backdrop-filter: blur(16px) saturate(1.3);
   border-radius: 16px;
@@ -282,8 +282,8 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 1px solid rgba(0,229,255,0.12);
-  box-shadow: 0 8px 40px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.05);
+  border: 1px solid rgba(0,229,255,0.18);
+  box-shadow: 0 8px 40px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.04);
   min-height: 320px;
   justify-content: center;
 }
@@ -338,7 +338,7 @@ body {
   right: -3px;
   bottom: -3px;
   border-radius: 50%;
-  border: 1px solid rgba(0,229,255,0.1);
+  border: 1px solid rgba(0,229,255,0.18);
 }
 
 @keyframes gaugeRotate {
@@ -460,12 +460,12 @@ body {
 }
 
 .info-card {
-  background: rgba(8,20,45,0.5);
+  background: rgba(6,16,38,0.72);
   backdrop-filter: blur(16px) saturate(1.3);
   -webkit-backdrop-filter: blur(16px) saturate(1.3);
   border-radius: 12px;
   padding: 14px;
-  border: 1px solid rgba(0,229,255,0.15);
+  border: 1px solid rgba(0,229,255,0.22);
   box-shadow: 0 4px 20px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.05);
   flex: 1;
 }
@@ -495,7 +495,7 @@ body {
 }
 
 .moon-card {
-  background: linear-gradient(135deg, rgba(10,15,40,0.6), rgba(15,25,55,0.6));
+  background: linear-gradient(135deg, rgba(6,12,30,0.85), rgba(10,20,45,0.85));
   display: flex;
   align-items: center;
   gap: 12px;
@@ -539,12 +539,12 @@ body {
 }
 
 .panel {
-  background: rgba(8,20,45,0.5);
+  background: rgba(6,16,38,0.72);
   backdrop-filter: blur(16px) saturate(1.3);
   -webkit-backdrop-filter: blur(16px) saturate(1.3);
   border-radius: 14px;
   padding: 18px;
-  border: 1px solid rgba(0,229,255,0.12);
+  border: 1px solid rgba(0,229,255,0.2);
   box-shadow: 0 4px 24px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.04);
   min-height: 280px;
   display: flex;
@@ -617,7 +617,7 @@ body {
   border-radius: 8px;
   padding: 10px;
   margin-top: 8px;
-  border: 1px solid rgba(0,229,255,0.1);
+  border: 1px solid rgba(0,229,255,0.18);
 }
 
 .water-conditions-title {
@@ -670,8 +670,8 @@ body {
 }
 
 .fish-card {
-  background: rgba(8,20,45,0.5);
-  border: 1px solid rgba(0,229,255,0.1);
+  background: rgba(6,16,38,0.72);
+  border: 1px solid rgba(0,229,255,0.18);
   border-radius: 8px;
   padding: 10px;
   text-align: center;
@@ -790,8 +790,8 @@ body {
 }
 
 .catch-card {
-  background: rgba(8,20,45,0.45);
-  border: 1px solid rgba(0,229,255,0.1);
+  background: rgba(6,16,38,0.68);
+  border: 1px solid rgba(0,229,255,0.18);
   border-radius: 8px;
   padding: 12px;
 }
@@ -883,8 +883,8 @@ body {
 
 /* CHARTER PROFILES */
 .charter-profile {
-  background: rgba(8,20,45,0.45);
-  border: 1px solid rgba(0,229,255,0.1);
+  background: rgba(6,16,38,0.68);
+  border: 1px solid rgba(0,229,255,0.18);
   border-radius: 8px;
   padding: 14px;
   margin-bottom: 10px;
@@ -953,8 +953,8 @@ body {
 
 /* FORMS */
 .charter-form {
-  background: rgba(8,20,45,0.45);
-  border: 1px solid rgba(0,229,255,0.1);
+  background: rgba(6,16,38,0.68);
+  border: 1px solid rgba(0,229,255,0.18);
   border-radius: 8px;
   padding: 16px;
 }
@@ -985,7 +985,7 @@ body {
   width: 100%;
   padding: 8px 10px;
   border-radius: 6px;
-  border: 1px solid rgba(0,229,255,0.15);
+  border: 1px solid rgba(0,229,255,0.22);
   background: rgba(255,255,255,0.05);
   color: #ffffff;
   font-size: 12px;
@@ -1095,9 +1095,9 @@ body {
 }
 
 .fish-modal {
-  background: rgba(8,20,45,0.92);
+  background: rgba(6,14,32,0.95);
   backdrop-filter: blur(20px);
-  border: 1px solid rgba(0,229,255,0.15);
+  border: 1px solid rgba(0,229,255,0.22);
   border-radius: 12px;
   max-width: 440px;
   width: 100%;
@@ -1406,10 +1406,10 @@ body {
 
 /* SPECIES FULL CARDS */
 .species-full-card {
-  background: rgba(8,20,45,0.45);
+  background: rgba(6,16,38,0.68);
   backdrop-filter: blur(16px) saturate(1.3);
   -webkit-backdrop-filter: blur(16px) saturate(1.3);
-  border: 1px solid rgba(0,229,255,0.1);
+  border: 1px solid rgba(0,229,255,0.18);
   border-radius: 12px;
   padding: 20px;
   cursor: pointer;
@@ -1511,7 +1511,7 @@ body {
 
 /* HOURLY CARD */
 .hourly-card {
-  background: rgba(8,20,45,0.45);
+  background: rgba(6,16,38,0.68);
   border: 1px solid rgba(0,229,255,0.08);
   border-radius: 8px;
   padding: 10px 14px;
@@ -1549,10 +1549,10 @@ body {
 
 /* FORECAST DAY CARD */
 .fc-card {
-  background: rgba(8,20,45,0.45);
+  background: rgba(6,16,38,0.68);
   backdrop-filter: blur(16px) saturate(1.3);
   -webkit-backdrop-filter: blur(16px) saturate(1.3);
-  border: 1px solid rgba(0,229,255,0.1);
+  border: 1px solid rgba(0,229,255,0.18);
   border-radius: 12px;
   overflow: hidden;
   transition: transform 0.2s, box-shadow 0.2s;
@@ -4381,7 +4381,7 @@ async function renderFullCatchFeed() {
       const availBadge = c.available === 'yes' ? '✅ Available' : c.available === 'sold' ? '🔒 Sold' : '🔄 Released';
       const photoHtml = c.photo_url ? `<img src="${c.photo_url}" alt="${c.species}" style="width:100%;height:160px;object-fit:cover;border-radius:8px;margin-bottom:10px;cursor:pointer" onclick="openLightbox('${c.photo_url.replace(/'/g, "\\'")}')">` : '';
       
-      return `<div style="background:rgba(8,20,45,0.45);backdrop-filter:blur(16px) saturate(1.3);-webkit-backdrop-filter:blur(16px) saturate(1.3);border:1px solid rgba(0,229,255,0.1);border-radius:12px;padding:16px">
+      return `<div style="background:rgba(6,16,38,0.72);backdrop-filter:blur(16px) saturate(1.3);-webkit-backdrop-filter:blur(16px) saturate(1.3);border:1px solid rgba(0,229,255,0.1);border-radius:12px;padding:16px">
         <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
           <div class="catch-avatar">🚤</div>
           <div>
@@ -4431,7 +4431,7 @@ async function renderFullCharterDirectory() {
       if (p.email) contactParts.push(`📧 <a href="mailto:${p.email}" style="color:#00e676">${escHtml(p.email)}</a>`);
       if (p.website) contactParts.push(`🌐 <a href="${escHtml(p.website)}" target="_blank" style="color:#00e676">Website</a>`);
       
-      return `<div style="background:rgba(8,20,45,0.45);backdrop-filter:blur(16px) saturate(1.3);-webkit-backdrop-filter:blur(16px) saturate(1.3);border:1px solid rgba(0,229,255,0.1);border-radius:12px;padding:20px">
+      return `<div style="background:rgba(6,16,38,0.72);backdrop-filter:blur(16px) saturate(1.3);-webkit-backdrop-filter:blur(16px) saturate(1.3);border:1px solid rgba(0,229,255,0.1);border-radius:12px;padding:20px">
         <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
           <div class="charter-profile-avatar">⚓</div>
           <div>
@@ -4666,7 +4666,7 @@ async function loadProfileCatches() {
       const dateStr = time.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
       const photoHtml = c.photo_url ? `<img src="${c.photo_url}" style="width:100%;height:120px;object-fit:cover;border-radius:8px;margin-bottom:8px;cursor:pointer" onclick="openLightbox('${c.photo_url.replace(/'/g, "\\'")}')">` : '<div style="width:100%;height:80px;background:rgba(0,0,0,0.05);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:32px;margin-bottom:8px">🐟</div>';
       
-      return `<div style="background:rgba(8,20,45,0.45);backdrop-filter:blur(16px) saturate(1.3);-webkit-backdrop-filter:blur(16px) saturate(1.3);border:1px solid rgba(0,229,255,0.1);border-radius:10px;padding:12px">
+      return `<div style="background:rgba(6,16,38,0.72);backdrop-filter:blur(16px) saturate(1.3);-webkit-backdrop-filter:blur(16px) saturate(1.3);border:1px solid rgba(0,229,255,0.1);border-radius:10px;padding:12px">
         ${photoHtml}
         <div style="font-size:13px;font-weight:700">${escHtml(c.species)}</div>
         <div style="font-size:10px;color:rgba(255,255,255,0.5)">${dateStr}${c.weight ? ' · ' + c.weight + ' lbs' : ''}${c.location ? ' · ' + escHtml(c.location) : ''}</div>
