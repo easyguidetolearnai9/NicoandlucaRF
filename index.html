@@ -2435,7 +2435,7 @@ const LAT = 25.69;
 const LON = -80.16;
 
 const MARINE_API = `https://marine-api.open-meteo.com/v1/marine?latitude=${LAT}&longitude=${LON}&daily=wave_height_max,wave_period_max,wind_wave_height_max&current=wave_height,wave_period,wind_wave_height&timezone=America%2FNew_York&forecast_days=7`;
-const WEATHER_API = `https://api.open-meteo.com/v1/forecast?latitude=${LAT}&longitude=${LON}&current=wind_speed_10m,wind_direction_10m,wind_gusts_10m,cloud_cover,precipitation,pressure_msl&hourly=pressure_msl,cloud_cover,precipitation_probability,uv_index,wind_speed_10m,wind_direction_10m&daily=sunrise,sunset&timezone=America/New_York&forecast_days=7`;
+const WEATHER_API = `https://api.open-meteo.com/v1/forecast?latitude=${LAT}&longitude=${LON}&current=wind_speed_10m,wind_direction_10m,wind_gusts_10m,cloud_cover,precipitation,pressure_msl&hourly=pressure_msl,cloud_cover,precipitation_probability,uv_index,wind_speed_10m,wind_direction_10m&daily=sunrise,sunset&timezone=America/New_York&forecast_days=7&wind_speed_unit=mph`;
 const WATER_TEMP_API = `https://api.tidesandcurrents.noaa.gov/api/prod/datagetter?date=latest&station=${TIDE_STATION}&product=water_temperature&units=english&time_zone=lst_ldt&format=json`;
 
 function showToast(msg, duration = 2500) {
@@ -2448,24 +2448,26 @@ function showToast(msg, duration = 2500) {
 const tips = ["Calm water = better visibility","Dawn and dusk feeding windows yield the best results","Flat conditions favor near-structure fishing","Monitor barometric pressure","Full moon nights drive stronger tides","High tide brings fish inshore","New moon and full moon create spring tides","Falling pressure before storms = feeding frenzy","Cloud cover 60-90% optimal","Solunar major periods drive peak activity"];
 
 // ===============================================
-// MOON PHASE CALCULATION
+// MOON PHASE CALCULATION (Gregorian-corrected JD)
 // ===============================================
 function getMoonPhase(date) {
   const year = date.getFullYear();
   const month = date.getMonth() + 1;
   const day = date.getDate();
   
-  let c = 0, e = 0;
-  if (month < 3) {
-    c = year - 1;
-    e = month + 12;
-  } else {
-    c = year;
-    e = month;
-  }
+  // Adjust for Jan/Feb (treat as months 13/14 of previous year)
+  let y = year, m = month;
+  if (m <= 2) { y -= 1; m += 12; }
   
-  const jd = Math.floor(365.25 * (c + 4716)) + Math.floor(30.6001 * (e + 1)) + day - 1524.5;
-  const daysSinceNew = jd - 2451549.5;
+  // Gregorian correction (required for dates after Oct 15, 1582)
+  const A = Math.floor(y / 100);
+  const B = 2 - A + Math.floor(A / 4);
+  
+  // Julian Date (with Gregorian correction)
+  const jd = Math.floor(365.25 * (y + 4716)) + Math.floor(30.6001 * (m + 1)) + day + B - 1524.5;
+  
+  // Reference: Known new moon Jan 6, 2000 18:14 UTC = JD 2451550.1
+  const daysSinceNew = jd - 2451550.1;
   const synodicMonth = 29.53058770576;
   let phase = daysSinceNew % synodicMonth;
   if (phase < 0) phase += synodicMonth;
@@ -2473,32 +2475,32 @@ function getMoonPhase(date) {
   return {
     age: phase,
     fraction: phase / synodicMonth,
-    isFullMoon: phase >= 13.5 && phase <= 16,
-    isNewMoon: phase <= 1.5 || phase >= 28,
+    isFullMoon: phase >= 13.0 && phase <= 16.0,
+    isNewMoon: phase <= 1.85 || phase >= 27.68,
     phaseName: getMoonPhaseName(phase),
     emoji: getMoonEmoji(phase)
   };
 }
 
 function getMoonPhaseName(age) {
-  if (age <= 1.5 || age >= 28) return 'New Moon';
-  if (age < 7.4) return 'Waxing Crescent';
-  if (age < 8.4) return 'First Quarter';
-  if (age < 13.5) return 'Waxing Gibbous';
-  if (age < 16) return 'Full Moon';
-  if (age < 22) return 'Waning Gibbous';
-  if (age < 23) return 'Last Quarter';
+  if (age <= 1.85 || age >= 27.68) return 'New Moon';
+  if (age < 7.38) return 'Waxing Crescent';
+  if (age < 9.23) return 'First Quarter';
+  if (age < 13.0) return 'Waxing Gibbous';
+  if (age < 16.0) return 'Full Moon';
+  if (age < 22.15) return 'Waning Gibbous';
+  if (age < 24.0) return 'Last Quarter';
   return 'Waning Crescent';
 }
 
 function getMoonEmoji(age) {
-  if (age <= 1.5 || age >= 28) return '🌑';
-  if (age < 7.4) return '🌒';
-  if (age < 8.4) return '🌓';
-  if (age < 13.5) return '🌔';
-  if (age < 16) return '🌕';
-  if (age < 22) return '🌖';
-  if (age < 23) return '🌗';
+  if (age <= 1.85 || age >= 27.68) return '🌑';
+  if (age < 7.38) return '🌒';
+  if (age < 9.23) return '🌓';
+  if (age < 13.0) return '🌔';
+  if (age < 16.0) return '🌕';
+  if (age < 22.15) return '🌖';
+  if (age < 24.0) return '🌗';
   return '🌘';
 }
 
