@@ -1176,39 +1176,174 @@ body {
 }
 
 /* RESPONSIVE */
-@media (max-width: 900px) {
+@media (max-width: 1100px) {
+  .container {
+    padding: 8px;
+  }
   .row1 {
-    grid-template-columns: 1fr;
+    grid-template-columns: 180px 1fr 260px;
+    gap: 10px;
   }
-  
   .row2 {
-    grid-template-columns: 1fr;
-  }
-  
-  .nav-center {
-    display: none;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 900px) {
+  .row1 {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .row1 .left-col {
+    order: 2;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 8px;
+  }
+  .row1 .center-col {
+    order: 1;
+    grid-column: 1 / -1;
+  }
+  .row1 .right-col {
+    order: 3;
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 8px;
+  }
+  
+  .row2 {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .row2 .panel:last-child {
+    grid-column: 1 / -1;
+  }
+  
+  .nav-center span {
+    font-size: 9px;
+    letter-spacing: 0.3px;
+  }
+  .nav-right input {
+    width: 100px;
+  }
+}
+
+@media (max-width: 700px) {
+  .row1 {
+    grid-template-columns: 1fr;
+  }
+  .row1 .left-col {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  .row1 .right-col {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  .row2 {
+    grid-template-columns: 1fr;
+  }
+  .row2 .panel:last-child {
+    grid-column: auto;
+  }
+  .nav-center {
+    display: none;
+  }
+  .section-title {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 500px) {
   .nav-right {
     display: none;
   }
+  .nav-left {
+    font-size: 14px;
+  }
+  .container {
+    padding: 6px;
+  }
   
+  /* Score gauge scales down */
+  .gauge-container svg {
+    width: 120px;
+    height: 120px;
+  }
+  .gauge-score {
+    font-size: 32px;
+  }
+  
+  /* Stats go 1x3 compact */
+  .row1 .left-col {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  .stat-card {
+    padding: 8px;
+    flex-direction: column;
+    text-align: center;
+  }
+  .stat-card .stat-icon {
+    width: 36px;
+    height: 36px;
+    margin-bottom: 4px;
+  }
+  .stat-value {
+    font-size: 18px;
+  }
+  .stat-label {
+    font-size: 8px;
+  }
+  
+  /* Right info stays 1x3 compact */
+  .row1 .right-col {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  
+  /* Fish grid 2 columns */
   .fish-grid {
     grid-template-columns: 1fr 1fr;
+    gap: 6px;
+  }
+  .fish-card .fish-img {
+    height: 45px;
+  }
+  .fish-card .fish-name {
+    font-size: 10px;
   }
   
+  /* Forecast bars smaller */
   .forecast-bars {
-    height: 100px;
+    height: 90px;
+  }
+  .bar-label, .bar-day, .bar-date {
+    font-size: 7px;
   }
   
-  .stat-value {
-    font-size: 20px;
+  /* Feeding windows compact */
+  .solunar-times {
+    gap: 4px;
+  }
+  .solunar-time {
+    font-size: 8px;
+    padding: 3px 6px;
   }
   
-  .gauge-score {
-    font-size: 36px;
+  /* Charter section */
+  .charter-tab {
+    font-size: 9px;
+    padding: 4px 8px;
+  }
+
+  /* Section titles */
+  .section-title {
+    font-size: 12px;
+  }
+  
+  /* Subheader */
+  .subheader {
+    font-size: 9px;
+    padding: 4px 10px;
   }
 }
 </style>
