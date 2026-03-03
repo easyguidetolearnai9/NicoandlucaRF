@@ -15,7 +15,7 @@
 
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  background: linear-gradient(180deg, rgba(5,10,25,0.35) 0%, rgba(8,16,32,0.5) 40%, rgba(5,12,25,0.65) 100%), url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1920');
+  background: linear-gradient(180deg, rgba(5,10,25,0.25) 0%, rgba(8,16,32,0.45) 40%, rgba(5,12,25,0.6) 100%), url('https://images.unsplash.com/photo-1545579133-99bb5ab189bd?w=1920&q=80');
   background-size: cover;
   background-attachment: fixed;
   background-position: center;
@@ -319,21 +319,27 @@ body {
   to { transform: rotate(360deg); }
 }
 
+@keyframes gaugePulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
 .gauge-bg, .gauge-progress {
   fill: none;
-  stroke-width: 10;
+  stroke-width: 12;
   transform: rotate(-135deg);
   transform-origin: center;
 }
 
 .gauge-bg {
-  stroke: rgba(255,255,255,0.08);
+  stroke: rgba(255,255,255,0.06);
 }
 
 .gauge-progress {
   stroke: url(#gaugeGradient);
   stroke-linecap: round;
   transition: stroke-dasharray 0.6s ease;
+  filter: drop-shadow(0 0 4px rgba(255,200,50,0.4));
 }
 
 .gauge-center {
@@ -345,11 +351,11 @@ body {
 }
 
 .gauge-score {
-  font-size: 42px;
-  font-weight: 700;
+  font-size: 48px;
+  font-weight: 800;
   color: #ffffff;
   line-height: 1;
-  text-shadow: 0 0 20px rgba(0,229,255,0.6);
+  text-shadow: 0 0 25px rgba(0,229,255,0.5), 0 0 50px rgba(0,229,255,0.2);
 }
 
 .gauge-max {
@@ -2024,6 +2030,29 @@ body {
               <stop offset="100%" style="stop-color:#00e676;stop-opacity:1" />
             </linearGradient>
           </defs>
+          <!-- Outer decorative dot ring -->
+          <g opacity="0.4">
+            <circle cx="80" cy="6" r="1.2" fill="#ffb74d"/>
+            <circle cx="106" cy="9" r="1" fill="#ffb74d"/>
+            <circle cx="128" cy="21" r="1.2" fill="#ffb74d"/>
+            <circle cx="145" cy="40" r="1" fill="#ffb74d"/>
+            <circle cx="153" cy="64" r="1.2" fill="#ffb74d"/>
+            <circle cx="153" cy="96" r="1" fill="#ffb74d"/>
+            <circle cx="145" cy="120" r="1.2" fill="#ffb74d"/>
+            <circle cx="128" cy="139" r="1" fill="#ffb74d"/>
+            <circle cx="106" cy="151" r="1.2" fill="#ffb74d"/>
+            <circle cx="80" cy="154" r="1" fill="#ffb74d"/>
+            <circle cx="54" cy="151" r="1.2" fill="#ffb74d"/>
+            <circle cx="32" cy="139" r="1" fill="#ffb74d"/>
+            <circle cx="15" cy="120" r="1.2" fill="#ffb74d"/>
+            <circle cx="7" cy="96" r="1" fill="#ffb74d"/>
+            <circle cx="7" cy="64" r="1.2" fill="#ffb74d"/>
+            <circle cx="15" cy="40" r="1" fill="#ffb74d"/>
+            <circle cx="32" cy="21" r="1.2" fill="#ffb74d"/>
+            <circle cx="54" cy="9" r="1" fill="#ffb74d"/>
+          </g>
+          <!-- Inner glow ring -->
+          <circle cx="80" cy="80" r="72" fill="none" stroke="rgba(0,229,255,0.08)" stroke-width="0.5"/>
           <circle class="gauge-bg" cx="80" cy="80" r="65" stroke-dasharray="408.41" stroke-dashoffset="0"></circle>
           <circle id="gaugeProgress" class="gauge-progress" cx="80" cy="80" r="65" stroke-dasharray="408.41" stroke-dashoffset="408.41"></circle>
         </svg>
