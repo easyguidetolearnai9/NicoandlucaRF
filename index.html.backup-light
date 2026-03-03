@@ -9,19 +9,15 @@
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: rgba(0,0,0,0.2); }
-::-webkit-scrollbar-thumb { background: rgba(0,229,255,0.3); border-radius: 3px; }
-
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  background: linear-gradient(180deg, rgba(5,10,25,0.85) 0%, rgba(10,20,40,0.9) 50%, rgba(5,15,30,0.95) 100%), url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1920');
+  background: linear-gradient(rgba(255,255,255,0.4), rgba(255,255,255,0.4)), url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1920');
   background-size: cover;
   background-attachment: fixed;
   background-position: center;
-  background-color: #0a1628;
+  background-color: #e8f0f4;
   min-height: 100vh;
-  color: #ffffff;
+  color: #2C2C2C;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
@@ -32,14 +28,14 @@ body {
   position: sticky;
   top: 0;
   z-index: 100;
-  height: 50px;
-  background: rgba(5,10,25,0.95);
-  backdrop-filter: blur(16px);
+  height: 46px;
+  background: rgba(44, 62, 80, 0.92);
+  backdrop-filter: blur(10px);
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 24px;
-  border-bottom: 1px solid rgba(0,229,255,0.2);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 
 .nav-left {
@@ -67,20 +63,17 @@ body {
   gap: 4px;
   cursor: pointer;
   transition: all 0.2s;
-  padding: 4px 10px;
+  padding: 4px 8px;
   border-radius: 4px;
-  color: rgba(255,255,255,0.7);
 }
 
 .nav-link:hover {
-  color: #fff;
-  text-shadow: 0 0 10px rgba(0,229,255,0.3);
+  background: rgba(255,255,255,0.15);
 }
 
 .nav-link.active {
-  color: #fff;
-  border-bottom: 2px solid #00e5ff;
-  text-shadow: 0 0 10px rgba(0,229,255,0.5);
+  background: rgba(255,255,255,0.2);
+  border-bottom: 2px solid #fff;
 }
 
 /* HAMBURGER */
@@ -109,13 +102,12 @@ body {
 .mobile-menu {
   display: none;
   flex-direction: column;
-  background: rgba(5,10,25,0.98);
-  backdrop-filter: blur(16px);
+  background: rgba(44, 62, 80, 0.95);
+  backdrop-filter: blur(8px);
   padding: 8px 0;
   position: sticky;
-  top: 50px;
+  top: 42px;
   z-index: 99;
-  border-bottom: 1px solid rgba(0,229,255,0.15);
 }
 
 .mobile-menu.open {
@@ -132,8 +124,7 @@ body {
 }
 
 .mobile-link:hover, .mobile-link.active {
-  background: rgba(0,229,255,0.1);
-  color: #00e5ff;
+  background: rgba(255,255,255,0.15);
 }
 
 /* PAGE VIEWS */
@@ -154,32 +145,25 @@ body {
   width: 150px;
   height: 28px;
   border-radius: 20px;
-  border: 1px solid rgba(0,229,255,0.2);
-  background: rgba(255,255,255,0.08);
-  color: white;
+  border: none;
   padding: 0 14px;
   font-size: 11px;
   outline: none;
 }
 
 .nav-right input::placeholder {
-  color: rgba(255,255,255,0.4);
-}
-
-.nav-right input:focus {
-  border-color: #00e5ff;
+  color: #999;
 }
 
 /* SUBHEADER */
 .subheader {
   height: 28px;
-  background: rgba(12,25,50,0.6);
+  background: rgba(255,255,255,0.7);
   display: flex;
   align-items: center;
   padding: 0 15px;
   font-size: 11px;
-  color: rgba(255,255,255,0.5);
-  border-bottom: 1px solid rgba(0,229,255,0.08);
+  color: #555;
 }
 
 /* CONTAINER */
@@ -194,7 +178,7 @@ body {
 .section-title {
   font-size: 16px;
   font-weight: 700;
-  color: #ffffff;
+  color: #2C2C2C;
   margin-bottom: 10px;
 }
 
@@ -215,11 +199,10 @@ body {
 }
 
 .stat-card {
-  background: rgba(12,25,50,0.7);
-  backdrop-filter: blur(12px);
-  border-radius: 12px;
+  background: rgba(255,255,255,0.8);
+  border-radius: 10px;
   padding: 14px;
-  border: 1px solid rgba(0,229,255,0.12);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   display: flex;
   align-items: center;
   gap: 12px;
@@ -254,27 +237,25 @@ body {
 .stat-label {
   font-size: 9px;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.5);
+  color: #888;
   margin-bottom: 2px;
-  letter-spacing: 0.5px;
 }
 
 .stat-value {
   font-size: 24px;
   font-weight: 700;
-  color: #ffffff;
+  color: #222;
 }
 
 /* CENTER COLUMN - Score Gauge */
 .center-col {
-  background: rgba(12,25,50,0.6);
-  backdrop-filter: blur(12px);
+  background: rgba(255,255,255,0.85);
   border-radius: 12px;
   padding: 24px 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 1px solid rgba(0,229,255,0.15);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   min-height: 300px;
   justify-content: center;
 }
@@ -294,7 +275,7 @@ body {
 }
 
 .gauge-bg {
-  stroke: rgba(255,255,255,0.08);
+  stroke: #E0E0E0;
 }
 
 .gauge-progress {
@@ -314,19 +295,18 @@ body {
 .gauge-score {
   font-size: 42px;
   font-weight: 700;
-  color: #ffffff;
+  color: #2E7D32;
   line-height: 1;
-  text-shadow: 0 0 20px rgba(0,229,255,0.6);
 }
 
 .gauge-max {
   font-size: 12px;
-  color: rgba(255,255,255,0.5);
+  color: #888;
 }
 
 .gauge-status {
   font-size: 12px;
-  color: #00e5ff;
+  color: #444;
   margin-bottom: 12px;
   text-align: center;
 }
@@ -340,18 +320,17 @@ body {
 }
 
 .info-pill {
-  background: rgba(0,229,255,0.1);
+  background: rgba(0,0,0,0.05);
   border-radius: 12px;
   padding: 6px 12px;
   font-size: 10px;
   display: flex;
   align-items: center;
   gap: 4px;
-  color: #00e5ff;
 }
 
-.info-pill.green { background: rgba(0,230,118,0.15); color: #00e676; }
-.info-pill.amber { background: rgba(255,152,0,0.15); color: #ff9800; }
+.info-pill.green { background: rgba(76,175,80,0.15); color: #2E7D32; }
+.info-pill.amber { background: rgba(255,152,0,0.15); color: #E65100; }
 
 .pill-dot {
   width: 6px;
@@ -359,8 +338,8 @@ body {
   border-radius: 50%;
 }
 
-.pill-dot.green { background: #00e676; }
-.pill-dot.amber { background: #ff9800; }
+.pill-dot.green { background: #4CAF50; }
+.pill-dot.amber { background: #FF9800; }
 
 .solunar-times {
   display: flex;
@@ -370,16 +349,16 @@ body {
 }
 
 .solunar-time {
-  background: rgba(255,255,255,0.08);
+  background: rgba(0,0,0,0.05);
   border-radius: 6px;
   padding: 4px 8px;
   font-size: 9px;
-  color: rgba(255,255,255,0.6);
+  color: #666;
 }
 
 .solunar-time.major {
-  background: rgba(255,152,0,0.15);
-  color: #ff9800;
+  background: rgba(245,158,11,0.15);
+  color: #E65100;
   font-weight: 600;
 }
 
@@ -392,11 +371,10 @@ body {
 }
 
 .info-card {
-  background: rgba(12,25,50,0.7);
-  backdrop-filter: blur(12px);
-  border-radius: 10px;
+  background: rgba(255,255,255,0.85);
+  border-radius: 8px;
   padding: 14px;
-  border: 1px solid rgba(0,229,255,0.12);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   flex: 1;
 }
 
@@ -407,14 +385,12 @@ body {
   display: flex;
   align-items: center;
   gap: 6px;
-  color: rgba(255,255,255,0.7);
 }
 
 .info-card-value {
   font-size: 14px;
   font-weight: 700;
-  color: #ff9800;
-  text-shadow: 0 0 8px rgba(255,152,0,0.4);
+  color: #E65100;
 }
 
 .tide-wave {
@@ -424,11 +400,10 @@ body {
 }
 
 .moon-card {
-  background: linear-gradient(135deg, rgba(10,15,40,0.9), rgba(15,25,55,0.9));
+  background: linear-gradient(135deg, #1a1a3e, #2c2c5e);
   display: flex;
   align-items: center;
   gap: 12px;
-  box-shadow: inset 0 0 30px rgba(0,229,255,0.05);
 }
 
 .moon-icon {
@@ -441,7 +416,7 @@ body {
 
 .moon-label {
   font-size: 9px;
-  color: #00e5ff;
+  color: #87CEEB;
 }
 
 .moon-phase {
@@ -452,7 +427,7 @@ body {
 
 .moon-sub {
   font-size: 9px;
-  color: rgba(255,255,255,0.5);
+  color: #AAA;
   margin-top: 2px;
 }
 
@@ -466,11 +441,10 @@ body {
 }
 
 .panel {
-  background: rgba(12,25,50,0.65);
-  backdrop-filter: blur(10px);
-  border-radius: 12px;
+  background: rgba(255,255,255,0.85);
+  border-radius: 10px;
   padding: 18px;
-  border: 1px solid rgba(0,229,255,0.1);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   min-height: 280px;
   display: flex;
   flex-direction: column;
@@ -479,7 +453,7 @@ body {
 .panel-title {
   font-size: 14px;
   font-weight: 700;
-  color: #ffffff;
+  color: #222;
   margin-bottom: 10px;
   display: flex;
   align-items: center;
@@ -487,7 +461,7 @@ body {
 }
 
 .peak-badge {
-  background: linear-gradient(135deg, #ff9800, #ff5722);
+  background: linear-gradient(135deg, #D4A853, #8B7D3C);
   color: white;
   font-size: 9px;
   padding: 2px 8px;
@@ -506,7 +480,7 @@ body {
 
 .forecast-bar {
   flex: 1;
-  background: linear-gradient(to bottom, #00e5ff, #0077b6);
+  background: linear-gradient(to bottom, #D4A853, #8B7D3C);
   border-radius: 4px;
   position: relative;
   min-height: 40px;
@@ -515,12 +489,11 @@ body {
   justify-content: center;
   padding-top: 4px;
   cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition: transform 0.2s;
 }
 
 .forecast-bar:hover {
   transform: translateY(-3px);
-  box-shadow: 0 0 12px rgba(0,229,255,0.4);
 }
 
 .forecast-score {
@@ -532,17 +505,16 @@ body {
 
 .forecast-day {
   font-size: 8px;
-  color: rgba(255,255,255,0.6);
+  color: #666;
   text-align: center;
   margin-top: 4px;
 }
 
 .water-conditions {
-  background: rgba(0,229,255,0.05);
+  background: rgba(0,0,0,0.03);
   border-radius: 8px;
   padding: 10px;
   margin-top: 8px;
-  border: 1px solid rgba(0,229,255,0.08);
 }
 
 .water-conditions-title {
@@ -552,26 +524,25 @@ body {
   display: flex;
   align-items: center;
   gap: 4px;
-  color: rgba(255,255,255,0.8);
 }
 
 .water-temp {
   font-size: 11px;
-  color: #00e5ff;
+  color: #555;
   margin-bottom: 4px;
 }
 
 .active-species {
   font-size: 9px;
-  color: rgba(255,255,255,0.6);
+  color: #777;
   line-height: 1.4;
 }
 
 /* SPECIES PANEL */
 .season-badge {
   display: inline-block;
-  background: rgba(0,229,255,0.15);
-  color: #00e5ff;
+  background: #4CAF50;
+  color: #1B5E20;
   font-size: 9px;
   padding: 4px 10px;
   border-radius: 12px;
@@ -581,7 +552,7 @@ body {
 
 .season-desc {
   font-size: 9px;
-  color: rgba(255,255,255,0.5);
+  color: #777;
   font-style: italic;
   margin-bottom: 10px;
 }
@@ -595,19 +566,18 @@ body {
 }
 
 .fish-card {
-  background: rgba(12,25,50,0.8);
-  border: 1px solid rgba(0,229,255,0.1);
+  background: white;
   border-radius: 8px;
   padding: 10px;
   text-align: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
   cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition: transform 0.2s;
   position: relative;
 }
 
 .fish-card:hover {
   transform: translateY(-3px);
-  box-shadow: 0 4px 15px rgba(0,229,255,0.15);
 }
 
 .fish-img {
@@ -621,13 +591,13 @@ body {
 .fish-name {
   font-size: 11px;
   font-weight: 700;
-  color: #ffffff;
+  color: #222;
   margin-bottom: 3px;
 }
 
 .fish-season {
   font-size: 8px;
-  color: rgba(255,255,255,0.5);
+  color: #888;
 }
 
 .hot-badge {
@@ -651,21 +621,20 @@ body {
 }
 
 .charter-tab {
-  background: rgba(255,255,255,0.08);
-  border: 1px solid rgba(255,255,255,0.1);
+  background: rgba(0,0,0,0.05);
+  border: 1px solid rgba(0,0,0,0.1);
   border-radius: 12px;
   padding: 5px 12px;
   font-size: 10px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s;
-  color: rgba(255,255,255,0.6);
 }
 
 .charter-tab.active {
-  background: #00e5ff;
-  color: #0a1628;
-  border-color: #00e5ff;
+  background: #2196F3;
+  color: white;
+  border-color: #2196F3;
 }
 
 .charter-content {
@@ -681,18 +650,18 @@ body {
 .empty-icon {
   font-size: 48px;
   margin-bottom: 10px;
-  opacity: 0.2;
+  opacity: 0.3;
 }
 
 .empty-text {
   font-size: 11px;
-  color: rgba(255,255,255,0.5);
+  color: #888;
   line-height: 1.4;
   margin-bottom: 12px;
 }
 
 .cta-btn {
-  background: linear-gradient(135deg, #ff5722, #e64a19);
+  background: #E53935;
   color: white;
   border: none;
   border-radius: 8px;
@@ -715,10 +684,10 @@ body {
 }
 
 .catch-card {
-  background: rgba(12,25,50,0.7);
-  border: 1px solid rgba(0,229,255,0.1);
+  background: white;
   border-radius: 8px;
   padding: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
 
 .catch-header {
@@ -746,13 +715,13 @@ body {
 
 .catch-boat {
   font-size: 9px;
-  color: rgba(255,255,255,0.5);
+  color: #888;
 }
 
 .catch-time {
   margin-left: auto;
   font-size: 9px;
-  color: rgba(255,255,255,0.4);
+  color: #AAA;
 }
 
 .catch-img {
@@ -772,26 +741,25 @@ body {
 }
 
 .catch-tag {
-  background: rgba(255,255,255,0.08);
-  border: 1px solid rgba(255,255,255,0.1);
+  background: rgba(0,0,0,0.05);
+  border: 1px solid rgba(0,0,0,0.1);
   border-radius: 6px;
   padding: 3px 8px;
   font-size: 10px;
   display: flex;
   align-items: center;
   gap: 3px;
-  color: rgba(255,255,255,0.7);
 }
 
 .catch-note {
   font-size: 11px;
-  color: rgba(255,255,255,0.6);
+  color: #666;
   line-height: 1.3;
   margin-bottom: 8px;
 }
 
 .reserve-btn {
-  background: linear-gradient(135deg, #00e676, #00c853);
+  background: linear-gradient(135deg, #4CAF50, #388E3C);
   color: white;
   border: none;
   border-radius: 8px;
@@ -808,11 +776,11 @@ body {
 
 /* CHARTER PROFILES */
 .charter-profile {
-  background: rgba(12,25,50,0.7);
-  border: 1px solid rgba(0,229,255,0.1);
+  background: white;
   border-radius: 8px;
   padding: 14px;
   margin-bottom: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
 
 .charter-profile-header {
@@ -840,7 +808,7 @@ body {
 
 .charter-profile-boat {
   font-size: 10px;
-  color: rgba(255,255,255,0.5);
+  color: #888;
 }
 
 .charter-profile-stats {
@@ -856,12 +824,12 @@ body {
 .charter-stat-val {
   font-size: 16px;
   font-weight: 700;
-  color: #00e5ff;
+  color: #FF9800;
 }
 
 .charter-stat-label {
   font-size: 8px;
-  color: rgba(255,255,255,0.4);
+  color: #AAA;
   text-transform: uppercase;
 }
 
@@ -878,8 +846,7 @@ body {
 
 /* FORMS */
 .charter-form {
-  background: rgba(12,25,50,0.7);
-  border: 1px solid rgba(0,229,255,0.1);
+  background: white;
   border-radius: 8px;
   padding: 16px;
 }
@@ -887,7 +854,7 @@ body {
 .charter-form h3 {
   font-size: 14px;
   font-weight: 700;
-  color: #00e5ff;
+  color: #FF9800;
   margin-bottom: 12px;
   text-align: center;
 }
@@ -899,7 +866,7 @@ body {
 .form-group label {
   display: block;
   font-size: 10px;
-  color: rgba(255,255,255,0.6);
+  color: #666;
   margin-bottom: 4px;
   font-weight: 600;
 }
@@ -910,9 +877,8 @@ body {
   width: 100%;
   padding: 8px 10px;
   border-radius: 6px;
-  border: 1px solid rgba(0,229,255,0.15);
-  background: rgba(255,255,255,0.05);
-  color: #ffffff;
+  border: 1px solid #DDD;
+  background: white;
   font-size: 12px;
   font-family: 'Inter', sans-serif;
   outline: none;
@@ -921,17 +887,7 @@ body {
 .form-group input:focus,
 .form-group select:focus,
 .form-group textarea:focus {
-  border-color: #00e5ff;
-}
-
-.form-group input::placeholder,
-.form-group textarea::placeholder {
-  color: rgba(255,255,255,0.3);
-}
-
-.form-group select option {
-  background: #0a1628;
-  color: white;
+  border-color: #FF9800;
 }
 
 .form-group textarea {
@@ -976,9 +932,9 @@ body {
   text-align: center;
   margin-top: 24px;
   padding-top: 20px;
-  border-top: 1px solid rgba(0,229,255,0.1);
+  border-top: 1px solid rgba(0,0,0,0.1);
   font-size: 12px;
-  color: rgba(255,255,255,0.5);
+  color: #555;
   line-height: 1.7;
 }
 
@@ -988,7 +944,7 @@ body {
 }
 
 .refresh-btn {
-  background: linear-gradient(135deg, #00e5ff, #0077b6);
+  background: linear-gradient(135deg, #2196F3, #1976D2);
   color: white;
   border: none;
   border-radius: 20px;
@@ -1020,9 +976,7 @@ body {
 }
 
 .fish-modal {
-  background: rgba(12,25,50,0.95);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(0,229,255,0.15);
+  background: white;
   border-radius: 12px;
   max-width: 440px;
   width: 100%;
@@ -1068,7 +1022,7 @@ body {
 .fm-season {
   text-align: center;
   font-size: 12px;
-  color: rgba(255,255,255,0.5);
+  color: #888;
   margin-bottom: 18px;
 }
 
@@ -1079,7 +1033,7 @@ body {
 .fm-label {
   font-size: 13px;
   font-weight: 700;
-  color: #00e5ff;
+  color: #FF9800;
   margin-bottom: 6px;
   display: flex;
   align-items: center;
@@ -1089,18 +1043,18 @@ body {
 .fm-text {
   font-size: 13px;
   line-height: 1.6;
-  color: rgba(255,255,255,0.7);
+  color: #555;
 }
 
 .fm-speed {
   display: inline-block;
-  background: rgba(0,229,255,0.15);
-  border: 1px solid rgba(0,229,255,0.3);
+  background: rgba(76,175,80,0.15);
+  border: 1px solid rgba(76,175,80,0.3);
   border-radius: 8px;
   padding: 6px 14px;
   font-size: 14px;
   font-weight: 700;
-  color: #00e5ff;
+  color: #4CAF50;
   margin-top: 6px;
 }
 
@@ -1144,8 +1098,8 @@ body {
   bottom: 24px;
   left: 50%;
   transform: translateX(-50%) translateY(100px);
-  background: #00e5ff;
-  color: #0a1628;
+  background: #4CAF50;
+  color: white;
   padding: 12px 24px;
   border-radius: 8px;
   font-size: 13px;
@@ -1201,15 +1155,15 @@ body {
   width: 50px;
   height: 26px;
   border-radius: 13px;
-  background: rgba(255,255,255,0.1);
-  border: 2px solid rgba(255,255,255,0.2);
+  background: rgba(0,0,0,0.1);
+  border: 2px solid #DDD;
   position: relative;
   transition: all 0.3s;
 }
 
 .fish-toggle-track.on {
-  background: linear-gradient(135deg, #00e676, #00c853);
-  border-color: #00e676;
+  background: linear-gradient(135deg, #4CAF50, #388E3C);
+  border-color: #4CAF50;
 }
 
 .fish-toggle-thumb {
@@ -1235,7 +1189,7 @@ body {
 }
 
 .fish-toggle-label.on {
-  color: #00e676;
+  color: #4CAF50;
 }
 
 .fish-avail-badge {
@@ -1250,15 +1204,15 @@ body {
 }
 
 .fish-avail-badge.yes {
-  background: rgba(0,230,118,0.15);
-  border: 1px solid rgba(0,230,118,0.4);
-  color: #00e676;
+  background: rgba(76,175,80,0.15);
+  border: 1px solid rgba(76,175,80,0.4);
+  color: #4CAF50;
 }
 
 .fish-avail-badge.no {
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.1);
-  color: rgba(255,255,255,0.4);
+  background: rgba(0,0,0,0.05);
+  border: 1px solid rgba(0,0,0,0.1);
+  color: #AAA;
 }
 
 /* AUTH */
@@ -1282,7 +1236,7 @@ body {
 }
 
 .google-signin-btn:hover {
-  box-shadow: 0 2px 8px rgba(0,229,255,0.2);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
 }
 
 .user-profile {
@@ -1295,35 +1249,32 @@ body {
   height: 56px;
   border-radius: 50%;
   margin: 0 auto 8px;
-  border: 2px solid rgba(0,229,255,0.3);
 }
 
 .user-name {
   font-size: 14px;
   font-weight: 700;
   margin-bottom: 4px;
-  color: #ffffff;
 }
 
 .user-email {
   font-size: 11px;
-  color: rgba(255,255,255,0.5);
+  color: #888;
   margin-bottom: 10px;
 }
 
 .signout-btn {
-  background: rgba(255,255,255,0.08);
-  border: 1px solid rgba(255,255,255,0.15);
+  background: rgba(0,0,0,0.05);
+  border: 1px solid rgba(0,0,0,0.1);
   border-radius: 6px;
   padding: 6px 16px;
   font-size: 11px;
   cursor: pointer;
   transition: all 0.2s;
-  color: rgba(255,255,255,0.7);
 }
 
 .signout-btn:hover {
-  background: rgba(255,255,255,0.15);
+  background: rgba(0,0,0,0.1);
 }
 
 /* FULL CHARTER PANELS */
@@ -1331,11 +1282,10 @@ body {
 
 /* SPECIES FULL CARDS */
 .species-full-card {
-  background: rgba(12,25,50,0.7);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(0,229,255,0.1);
+  background: rgba(255,255,255,0.9);
   border-radius: 12px;
   padding: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   cursor: pointer;
   transition: transform 0.2s, box-shadow 0.2s;
   position: relative;
@@ -1343,7 +1293,7 @@ body {
 
 .species-full-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 6px 20px rgba(0,229,255,0.15);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
 }
 
 .species-full-card img {
@@ -1361,13 +1311,13 @@ body {
 
 .species-full-card .season-info {
   font-size: 11px;
-  color: rgba(255,255,255,0.5);
+  color: #888;
   margin-bottom: 8px;
 }
 
 .species-full-card .detail-row {
   font-size: 11px;
-  color: rgba(255,255,255,0.7);
+  color: #555;
   margin-bottom: 4px;
   display: flex;
   gap: 4px;
@@ -1375,8 +1325,8 @@ body {
 
 .species-active-badge {
   display: inline-block;
-  background: rgba(0,230,118,0.15);
-  color: #00e676;
+  background: rgba(76,175,80,0.15);
+  color: #2E7D32;
   font-size: 10px;
   padding: 3px 10px;
   border-radius: 10px;
@@ -1385,8 +1335,8 @@ body {
 
 .species-inactive-badge {
   display: inline-block;
-  background: rgba(255,255,255,0.08);
-  color: rgba(255,255,255,0.4);
+  background: rgba(0,0,0,0.05);
+  color: #999;
   font-size: 10px;
   padding: 3px 10px;
   border-radius: 10px;
@@ -1404,8 +1354,8 @@ body {
   padding: 8px 4px;
   text-align: center;
   font-size: 10px;
-  color: rgba(255,255,255,0.5);
-  border-bottom: 1px solid rgba(255,255,255,0.08);
+  color: #888;
+  border-bottom: 1px solid #eee;
 }
 
 .season-table td {
@@ -1414,45 +1364,45 @@ body {
 }
 
 .season-table td.peak {
-  background: rgba(255,87,34,0.2);
-  color: #ff5722;
+  background: rgba(255,87,34,0.15);
+  color: #E65100;
   font-weight: 700;
   border-radius: 4px;
 }
 
 .season-table td.active {
-  background: rgba(0,230,118,0.1);
-  color: #00e676;
+  background: rgba(76,175,80,0.1);
+  color: #4CAF50;
   border-radius: 4px;
 }
 
 .season-table td.fish-name {
   text-align: left;
   font-weight: 700;
-  color: #ffffff;
+  color: #333;
   padding-left: 8px;
 }
 
 /* HOURLY CARD */
 .hourly-card {
-  background: rgba(12,25,50,0.7);
-  border: 1px solid rgba(0,229,255,0.08);
+  background: rgba(255,255,255,0.85);
   border-radius: 8px;
   padding: 10px 14px;
   text-align: center;
   min-width: 80px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
 }
 
 .hourly-card .hour-label {
   font-size: 11px;
   font-weight: 700;
-  color: #ffffff;
+  color: #333;
   margin-bottom: 4px;
 }
 
 .hourly-card .hour-detail {
   font-size: 9px;
-  color: rgba(255,255,255,0.5);
+  color: #888;
 }
 
 .hourly-card.highlight {
@@ -1473,22 +1423,20 @@ body {
 
 /* FORECAST DAY CARD */
 .fc-card {
-  background: rgba(12,25,50,0.7);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(0,229,255,0.1);
+  background: rgba(255,255,255,0.92);
   border-radius: 12px;
   overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
   transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .fc-card:hover {
   transform: translateY(-3px);
-  box-shadow: 0 6px 20px rgba(0,229,255,0.15);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.12);
 }
 
 .fc-card.today {
-  border: 2px solid #ff9800;
-  box-shadow: 0 0 15px rgba(255,152,0,0.2);
+  border: 2px solid #FF9800;
 }
 
 .fc-card-header {
@@ -1497,9 +1445,9 @@ body {
   position: relative;
 }
 
-.fc-card-header.high { background: linear-gradient(135deg, #00c853, #00e676); }
-.fc-card-header.medium { background: linear-gradient(135deg, #ff9800, #ff5722); }
-.fc-card-header.low { background: linear-gradient(135deg, #f44336, #c62828); }
+.fc-card-header.high { background: linear-gradient(135deg, #43A047, #2E7D32); }
+.fc-card-header.medium { background: linear-gradient(135deg, #FB8C00, #EF6C00); }
+.fc-card-header.low { background: linear-gradient(135deg, #E53935, #C62828); }
 
 .fc-card-day {
   font-size: 13px;
@@ -1540,14 +1488,14 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 5px 0;
-  border-bottom: 1px solid rgba(255,255,255,0.06);
+  border-bottom: 1px solid rgba(0,0,0,0.04);
   font-size: 11px;
 }
 
 .fc-row:last-child { border-bottom: none; }
 
 .fc-row-label {
-  color: rgba(255,255,255,0.5);
+  color: #888;
   display: flex;
   align-items: center;
   gap: 4px;
@@ -1555,12 +1503,12 @@ body {
 
 .fc-row-value {
   font-weight: 600;
-  color: #ffffff;
+  color: #333;
 }
 
-.fc-row-value.good { color: #00e676; }
-.fc-row-value.ok { color: #ff9800; }
-.fc-row-value.bad { color: #f44336; }
+.fc-row-value.good { color: #2E7D32; }
+.fc-row-value.ok { color: #E65100; }
+.fc-row-value.bad { color: #C62828; }
 
 .fc-moon-row {
   display: flex;
@@ -1575,18 +1523,18 @@ body {
 
 .fc-moon-info {
   font-size: 10px;
-  color: rgba(255,255,255,0.6);
+  color: #666;
   line-height: 1.3;
 }
 
 .fc-best-time {
   margin-top: 8px;
   padding: 6px 10px;
-  background: rgba(255, 152, 0, 0.15);
-  border: 1px solid rgba(255, 152, 0, 0.25);
+  background: rgba(255, 152, 0, 0.1);
+  border: 1px solid rgba(255, 152, 0, 0.2);
   border-radius: 6px;
   font-size: 10px;
-  color: #ff9800;
+  color: #E65100;
   font-weight: 600;
   text-align: center;
 }
@@ -1967,9 +1915,9 @@ body {
         <svg width="140" height="140" viewBox="0 0 140 140">
           <defs>
             <linearGradient id="gaugeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" style="stop-color:#00e676;stop-opacity:1" />
-              <stop offset="50%" style="stop-color:#00e5ff;stop-opacity:1" />
-              <stop offset="100%" style="stop-color:#ff9800;stop-opacity:1" />
+              <stop offset="0%" style="stop-color:#4CAF50;stop-opacity:1" />
+              <stop offset="50%" style="stop-color:#FFC107;stop-opacity:1" />
+              <stop offset="100%" style="stop-color:#FF9800;stop-opacity:1" />
             </linearGradient>
           </defs>
           <circle class="gauge-bg" cx="70" cy="70" r="60" stroke-dasharray="339.292" stroke-dashoffset="0"></circle>
@@ -2018,8 +1966,8 @@ body {
         <svg class="tide-wave" viewBox="0 0 200 40">
           <defs>
             <linearGradient id="tideGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" style="stop-color:#00e5ff;stop-opacity:0.8" />
-              <stop offset="100%" style="stop-color:#00e5ff;stop-opacity:0.2" />
+              <stop offset="0%" style="stop-color:#2196F3;stop-opacity:0.8" />
+              <stop offset="100%" style="stop-color:#2196F3;stop-opacity:0.2" />
             </linearGradient>
           </defs>
           <path d="M 0,20 Q 50,5 100,20 T 200,20 L 200,40 L 0,40 Z" fill="url(#tideGradient)" />
