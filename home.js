@@ -4,9 +4,16 @@
     forecast: document.getElementById("forecast-view")
   };
   const shell = document.querySelector(".exact-shell");
+  let activeView = "dashboard";
 
   function applyViewGeometry(view) {
     if (!shell || !views.dashboard) {
+      return;
+    }
+
+    if (window.matchMedia("(max-width: 760px)").matches) {
+      shell.style.removeProperty("width");
+      views.dashboard.style.removeProperty("aspect-ratio");
       return;
     }
 
@@ -40,6 +47,7 @@
   }
 
   function setActiveView(view) {
+    activeView = view;
     hydrateViewAssets(view);
     applyViewGeometry(view);
 
@@ -62,6 +70,10 @@
 
   window.addEventListener("hashchange", () => {
     setActiveView(window.location.hash === "#forecast" ? "forecast" : "dashboard");
+  });
+
+  window.addEventListener("resize", () => {
+    applyViewGeometry(activeView);
   });
 
   const initialView = window.location.hash === "#forecast" ? "forecast" : "dashboard";
