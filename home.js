@@ -3,6 +3,22 @@
     dashboard: document.getElementById("dashboard-view"),
     forecast: document.getElementById("forecast-view")
   };
+  const shell = document.querySelector(".exact-shell");
+
+  function applyViewGeometry(view) {
+    if (!shell || !views.dashboard) {
+      return;
+    }
+
+    if (view === "dashboard") {
+      shell.style.width = "min(100vw, calc(100dvh * 1024 / 428))";
+      views.dashboard.style.aspectRatio = "1024 / 428";
+      return;
+    }
+
+    shell.style.width = "min(100vw, calc(100dvh * 1024 / 454))";
+    views.dashboard.style.aspectRatio = "1024 / 454";
+  }
 
   function hydrateViewAssets(view) {
     const section = views[view];
@@ -25,6 +41,7 @@
 
   function setActiveView(view) {
     hydrateViewAssets(view);
+    applyViewGeometry(view);
 
     Object.keys(views).forEach((key) => {
       views[key].classList.toggle("is-active", key === view);
