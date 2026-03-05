@@ -7,8 +7,8 @@
   const searchInput = document.getElementById("search-input");
 
   const sourceMap = {
-    dashboard: "./dashboard-4x.jpg",
-    forecast: "./reference-4x.jpg"
+    dashboard: "./dashboard-4x.png",
+    forecast: "./reference-4x.png"
   };
 
   function topicUrl(key) {
@@ -68,30 +68,6 @@
     if (navMap[topic.nav]) {
       document.getElementById(navMap[topic.nav]).classList.add("is-active");
     }
-  }
-
-  function renderMarketplacePage() {
-    document.title = "Fresh Catch Marketplace | Nico & Luca RF";
-    document.body.className = "home-exact marketplace-exact-page";
-    document.body.innerHTML = `
-      <main class="exact-shell marketplace-shell">
-        <section class="exact-view marketplace-view is-active" aria-label="Fresh Catch Marketplace" style="--scene-image:url('./marketplace-page-exact.png');">
-          <img class="exact-image" src="./marketplace-page-exact.png" alt="Fresh Catch Marketplace">
-          <div class="hotspot-layer">
-            <a class="hotspot" href="/" style="--x:24.5; --y:0.6; --w:11.8; --h:4.8;" aria-label="Open dashboard"></a>
-            <a class="hotspot" href="/#forecast" style="--x:36.2; --y:0.6; --w:9.8; --h:4.8;" aria-label="Open forecast"></a>
-            <a class="hotspot" href="/detail?topic=species-season" style="--x:46.0; --y:0.6; --w:8.8; --h:4.8;" aria-label="Open species"></a>
-            <a class="hotspot" href="/detail?topic=charter-marketplace" style="--x:54.6; --y:0.6; --w:12.8; --h:4.8;" aria-label="Open marketplace"></a>
-            <a class="hotspot" href="/detail?topic=site-guide" style="--x:67.5; --y:0.6; --w:7.8; --h:4.8;" aria-label="Open profile"></a>
-
-            <a class="hotspot" href="/detail?topic=charter-marketplace" style="--x:2.4; --y:4.6; --w:51.8; --h:77.8;" aria-label="Open marketplace page"></a>
-            <a class="hotspot" href="/detail?topic=charter-marketplace" style="--x:55.2; --y:4.2; --w:29.6; --h:51.2;" aria-label="Open captain portal preview"></a>
-            <a class="hotspot" href="/detail?topic=charter-marketplace" style="--x:54.8; --y:54.9; --w:31.2; --h:41.7;" aria-label="Open marketplace controls"></a>
-          </div>
-        </section>
-      </main>
-    `;
-    setSeoTags();
   }
 
   function applyPreviewCrop(crop) {
@@ -160,14 +136,6 @@
     if (match) {
       window.location.href = topicUrl(match[0]);
     }
-  }
-
-  if (activeTopicKey === "charter-marketplace") {
-    renderMarketplacePage();
-    if (searchForm) {
-      searchForm.addEventListener("submit", applySearch);
-    }
-    return;
   }
 
   setSeoTags();
