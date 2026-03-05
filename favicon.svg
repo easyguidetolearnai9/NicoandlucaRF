@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Nico & Luca RF">
+  <defs>
+    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#63ecff"/>
+      <stop offset="100%" stop-color="#98a7ff"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="12" fill="#081427"/>
+  <path d="M8 38c10-2 14-16 28-21 8-3 18-3 26 0-8 0-14 4-18 10 9-1 16 2 22 9-9-1-15 1-20 5-5 5-9 11-18 13-7 2-13-2-20-7 8 1 13-1 17-5-7-1-12-3-17-10z" fill="none" stroke="url(#g)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M13 34c7 1 11 3 14 8" fill="none" stroke="#6ff5ff" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="40" cy="22" r="3" fill="#9efcff"/>
+</svg>
